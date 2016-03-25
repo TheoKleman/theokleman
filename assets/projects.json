@@ -1,0 +1,34 @@
+[
+    {
+        "id": "zerator",
+        "title": "Zerator",
+        "client": "Streamer - Youtuber",
+        "technos": ["AngularJS", "Wordpress", "SASS"],
+        "type": "Freelance project",
+        "role": ["UI/UX Designer", "Front-End Developer"]
+    },
+    {
+        "id": "serreChevalier",
+        "title": "Serre Chevalier",
+        "client": "Ski station",
+        "technos": ["Wordpress", "SASS", "SITRA API"],
+        "type": "Provider for Mezcalito",
+        "role": ["Front-End Developer"]
+    },
+    {
+        "id": "4lTrophy",
+        "title": "4L Trophy",
+        "client": "Association - Enfants du Désert",
+        "technos": ["AngularJS", "Canvas", "SASS", "API REST"],
+        "type": "School Project",
+        "role": ["UI/UX Designer", "Front-End Developer"]
+    },
+    {
+        "id": "domingo",
+        "title": "Domingo",
+        "client": "Streamer - Youtuber",
+        "technos": ["AngularJS", "SASS"],
+        "type": "Freelance Project",
+        "role": ["UI/UX Designer", "Front-End Developer"]
+    }
+]

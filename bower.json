@@ -1,0 +1,23 @@
+{
+  "name": "theokleman",
+  "description": "Portfolio",
+  "main": "gulpfile.js",
+  "authors": [
+    "Théo KLEMAN"
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "gsap": "^1.18.2",
+    "jquery": "^2.2.2",
+    "handlebars": "^4.0.5"
+  }
+}
