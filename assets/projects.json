@@ -1,6 +1,8 @@
 [
     {
         "id": "zerator",
+        "url": "http://zerator.com",
+        "thumbnail": "http://lorempixel/1920/1080",
         "title": "Zerator",
         "client": "Streamer - Youtuber",
         "technos": ["AngularJS", "Wordpress", "SASS"],
@@ -9,6 +11,8 @@
     },
     {
         "id": "serreChevalier",
+        "url": "http://www.serre-chevalier.com/",
+        "thumbnail": "http://lorempixel/1920/1080",
         "title": "Serre Chevalier",
         "client": "Ski station",
         "technos": ["Wordpress", "SASS", "SITRA API"],
@@ -17,6 +21,8 @@
     },
     {
         "id": "4lTrophy",
+        "url": "http://4ltrophy.paul.yt/",
+        "thumbnail": "http://lorempixel/1920/1080",
         "title": "4L Trophy",
         "client": "Association - Enfants du Désert",
         "technos": ["AngularJS", "Canvas", "SASS", "API REST"],
@@ -25,6 +31,8 @@
     },
     {
         "id": "domingo",
+        "url": "http://domingo.tv",
+        "thumbnail": "http://lorempixel/1920/1080",
         "title": "Domingo",
         "client": "Streamer - Youtuber",
         "technos": ["AngularJS", "SASS"],
