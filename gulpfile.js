@@ -5,10 +5,16 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var watch = require('gulp-watch');
 var plumber = require('gulp-plumber');
+var browserSync = require('browser-sync').create();
 
 gulp.task('default', ['js_libs', 'js_app', 'sass'], function(){
+    browserSync.init({
+        proxy: "http://theokleman.local/"
+    });
+
     gulp.watch('js/app/**/*.js', ['js_app']);
     gulp.watch('sass/**/*.scss', ['sass']);
+    gulp.watch(['./*.html', './js/app/**/*.js', './css/main.css']).on('change', browserSync.reload);
 });
 
 gulp.task('js_libs', function(){
