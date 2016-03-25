@@ -19,18 +19,21 @@ App.prototype.init = function() {
     $.getJSON('assets/projects.json', function(data){
         for (var i = 0; i < data.length; i++){
             var id = data[i].id;
+            var link = data[i].link;
+            var thumbnail = data[i].thumbnail;
             var title = data[i].title;
+            var shortTitle = data[i].shortTitle;
             var client = data[i].client;
             var technos = data[i].technos;
             var type = data[i].type;
             var role = data[i].role;
 
             // Create projects objects
-            app.projects[i] = new Project(id, title, client, technos, type, role);
+            app.projects[i] = new Project(id, link, thumbnail, title, shortTitle, client, technos, type, role);
 
             // Create projects in DOM
-            $('body').append('<section id="'+id+'"></section');
-            $('section#'+id).html(app.templateData(app.projects[i].data));
+            $('body').append('<section class="project" id="'+id+'"></section');
+            $('section#'+id).html(app.templateData(app.projects[i]));
         }
 
     });
@@ -40,5 +43,5 @@ $(document).ready(function(){
 
     app = new App();
     app.init();
-    
+
 });

@@ -1,21 +1,15 @@
-var Project = function(id, title, client, technos, type, role) {
+var Project = function(id, link, thumbnail, title, shortTitle, client, technos, type, role) {
     this.id = id;
+    this.link = link;
+    this.thumbnail = thumbnail;
     this.title = title;
+    this.shortTitle = shortTitle;
     this.client = client;
     this.technos = technos;
     this.type = type;
     this.role = role;
 
     this.domElem = $('#' + this.id);
-
-    this.data = {
-        "id": this.id,
-        "title": this.title,
-        "client": this.client,
-        "technos": this.technos,
-        "type": this.type,
-        "role": this.role
-    }
 };
 
 Project.prototype.show = function() {

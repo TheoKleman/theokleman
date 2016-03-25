@@ -1,8 +1,8 @@
 [
     {
         "id": "zerator",
-        "url": "http://zerator.com",
-        "thumbnail": "http://lorempixel/1920/1080",
+        "link": "http://zerator.com",
+        "thumbnail": "img/projects/zerator.jpg",
         "title": "Zerator",
         "shortTitle": "Zerator",
         "client": "Streamer - Youtuber",
@@ -12,8 +12,8 @@
     },
     {
         "id": "serreChevalier",
-        "url": "http://www.serre-chevalier.com/",
-        "thumbnail": "http://lorempixel/1920/1080",
+        "link": "http://www.serre-chevalier.com/",
+        "thumbnail": "img/projects/serre-chevalier.jpg",
         "title": "Serre-Chevalier",
         "shortTitle": "Serre-Che",
         "client": "Ski station",
@@ -23,8 +23,8 @@
     },
     {
         "id": "4lTrophy",
-        "url": "http://4ltrophy.paul.yt/",
-        "thumbnail": "http://lorempixel/1920/1080",
+        "link": "http://4ltrophy.paul.yt/",
+        "thumbnail": "img/projects/4l-trophy.jpg",
         "title": "4L Trophy",
         "shortTitle": "4L Trophy",
         "client": "Association - Enfants du Désert",
@@ -34,8 +34,8 @@
     },
     {
         "id": "domingo",
-        "url": "http://domingo.tv",
-        "thumbnail": "http://lorempixel/1920/1080",
+        "link": "http://domingo.tv",
+        "thumbnail": "img/projects/domingo.jpg",
         "title": "Domingo",
         "shortTitle": "Domingo",
         "client": "Streamer - Youtuber",
