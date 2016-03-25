@@ -40,5 +40,5 @@ $(document).ready(function(){
 
     app = new App();
     app.init();
-    console.log(app);
+    
 });
