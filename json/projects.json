@@ -1,0 +1,48 @@
+{
+    "projects": [
+        {
+            "id": "zerator",
+            "link": "http://zerator.com",
+            "thumbnail": "img/projects/zerator.jpg",
+            "title": "Zerator",
+            "shortTitle": "Zerator",
+            "client": "Streamer - Youtuber",
+            "technos": ["AngularJS", "Wordpress", "SASS"],
+            "type": "Freelance project",
+            "role": ["UI/UX Designer", "Front-End Developer"]
+        },
+        {
+            "id": "serreChevalier",
+            "link": "http://www.serre-chevalier.com/",
+            "thumbnail": "img/projects/serre-chevalier.jpg",
+            "title": "Serre-Chevalier",
+            "shortTitle": "Serre-Che",
+            "client": "Ski station",
+            "technos": ["Wordpress", "SASS", "SITRA API"],
+            "type": "Provider for Mezcalito",
+            "role": ["Front-End Developer"]
+        },
+        {
+            "id": "4lTrophy",
+            "link": "http://4ltrophy.paul.yt/",
+            "thumbnail": "img/projects/4l-trophy.jpg",
+            "title": "4L Trophy",
+            "shortTitle": "4L Trophy",
+            "client": "Association - Enfants du Désert",
+            "technos": ["AngularJS", "Canvas", "SASS", "API REST"],
+            "type": "School Project",
+            "role": ["UI/UX Designer", "Front-End Developer"]
+        },
+        {
+            "id": "domingo",
+            "link": "http://domingo.tv",
+            "thumbnail": "img/projects/domingo.jpg",
+            "title": "Domingo",
+            "shortTitle": "Domingo",
+            "client": "Streamer - Youtuber",
+            "technos": ["AngularJS", "SASS"],
+            "type": "Freelance Project",
+            "role": ["UI/UX Designer", "Front-End Developer"]
+        }
+    ]
+}

@@ -2,12 +2,17 @@
     box-sizing: border-box;
 }
 
+html, body {
+    overflow: hidden;
+}
+
 body {
+    position: relative;
     background: $blue;
     color: $light;
     font-family: $futura;
-}
-
-section.project {
-    display: none;
+    height: 100vh;
+    width: 100vw;
+    max-height: 100vh;
+    max-width: 100vw;
 }
