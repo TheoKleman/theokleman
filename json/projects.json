@@ -7,9 +7,9 @@
             "title": "Zerator",
             "shortTitle": "Zerator",
             "client": "Streamer - Youtuber",
-            "technos": ["AngularJS", "Wordpress", "SASS"],
+            "stack": "AngularJS / Wordpress / SASS",
             "type": "Freelance project",
-            "role": ["UI/UX Designer", "Front-End Developer"]
+            "role": "UI/UX Designer / Front-End Developer"
         },
         {
             "id": "serreChevalier",
@@ -18,9 +18,9 @@
             "title": "Serre-Chevalier",
             "shortTitle": "Serre-Che",
             "client": "Ski station",
-            "technos": ["Wordpress", "SASS", "SITRA API"],
+            "stack": "Wordpress / SASS / SITRA2 API",
             "type": "Provider for Mezcalito",
-            "role": ["Front-End Developer"]
+            "role": "Front-End Developer"
         },
         {
             "id": "4lTrophy",
@@ -29,9 +29,9 @@
             "title": "4L Trophy",
             "shortTitle": "4L Trophy",
             "client": "Association - Enfants du Désert",
-            "technos": ["AngularJS", "Canvas", "SASS", "API REST"],
+            "stack": "AngularJS / Canvas / SASS / API REST",
             "type": "School Project",
-            "role": ["UI/UX Designer", "Front-End Developer"]
+            "role": "UI/UX Designer / Front-End Developer"
         },
         {
             "id": "domingo",
@@ -40,9 +40,9 @@
             "title": "Domingo",
             "shortTitle": "Domingo",
             "client": "Streamer - Youtuber",
-            "technos": ["AngularJS", "SASS"],
+            "stack": "AngularJS / SASS",
             "type": "Freelance Project",
-            "role": ["UI/UX Designer", "Front-End Developer"]
+            "role": "UI/UX Designer / Front-End Developer"
         }
     ]
 }

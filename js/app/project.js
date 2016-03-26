@@ -1,11 +1,11 @@
-var Project = function(id, link, thumbnail, title, shortTitle, client, technos, type, role) {
+var Project = function(id, link, thumbnail, title, shortTitle, client, stack, type, role) {
     this.id = id;
     this.link = link;
     this.thumbnail = thumbnail;
     this.title = title;
     this.shortTitle = shortTitle;
     this.client = client;
-    this.technos = technos;
+    this.stack = stack;
     this.type = type;
     this.role = role;
 

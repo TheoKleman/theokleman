@@ -1,9 +1,42 @@
 {{#each projects}}
     <section class="project" id="{{id}}" data-index="{{@key}}">
-        <div class="content">
-            <!-- templates/project.hbs -->
+        <div class="project--content">
+            <div class="project--content--left">
+                <h2 class="number">#{{@key}}</h2>
+                <h2 class="project-name">{{shortTitle}}</h2>
+                <span class="client-type">{{client}}</span>
+                <a target="_blank" href="{{link}}" class="launch">
+                    Launch Website
+                </a>
+            </div>
+            <div class="project--content--right">
+                <div class="misc">
+                    <span class="label">
+                        [type]
+                    </span>
+                    <span class="content">
+                        {{type}}
+                    </span>
+                </div>
+                <div class="misc">
+                    <span class="label">
+                        [role]
+                    </span>
+                    <span class="content">
+                        {{role}}
+                    </span>
+                </div>
+                <div class="misc">
+                    <span class="label">
+                        [stack]
+                    </span>
+                    <span class="content">
+                        {{stack}}
+                    </span>
+                </div>
+            </div>
         </div>
-        <div class="filter"></div>
-        <div class="thumbnail" style="background-image: url('{{thumbnail}}')"></div>
+        <div class="project--filter"></div>
+        <div class="project--thumbnail" style="background-image: url('{{thumbnail}}')"></div>
     </section>
 {{/each}}

@@ -22,19 +22,19 @@ section.project {
         height: 100%;
     }
 
-    > .content {
+    > .project--content {
         position: absolute;
         z-index: 3;
         text-align: center;
     }
     
-    > .filter {
+    > .project--filter {
         position: absolute;
         z-index: 2;
         background: rgba($blue,.8);
     }
 
-    > .thumbnail {
+    > .project--thumbnail {
         position: absolute;
         z-index: 1;
         filter: grayscale(70%);
@@ -43,4 +43,8 @@ section.project {
         background-position: center center;
         background: rgba($blue,.8);
     }
+}
+
+.project--content {
+
 }

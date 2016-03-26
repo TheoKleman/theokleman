@@ -4,8 +4,6 @@ var App = function(){
 
     this.sliderTemplateHbs = null;
     this.templateSliderData = null;
-    this.projectTemplateHbs = null;
-    this.templateProjectData = null;
 };
 
 App.prototype.init = function(){
@@ -18,15 +16,9 @@ App.prototype.init = function(){
         self.templateSliderData = Handlebars.compile(self.sliderTemplateHbs);
     });
 
-    // Get project template 
-    $.get('templates/project.hbs', function(data){
-        self.projectTemplateHbs = data;
-        self.templateProjectData = Handlebars.compile(self.projectTemplateHbs);
-    });
-
     // Get projects and template them
     $.getJSON('json/projects.json', function(data){
-        // Append slider template
+        // Create slider projects items
         var projects = data;
         $('section#slider').html(app.templateSliderData(projects));
 
@@ -38,15 +30,12 @@ App.prototype.init = function(){
             var title = entry[i].title;
             var shortTitle = entry[i].shortTitle;
             var client = entry[i].client;
-            var technos = entry[i].technos;
+            var stack = entry[i].stack;
             var type = entry[i].type;
             var role = entry[i].role;
 
             // Create projects objects
-            self.projects[i] = new Project(id, link, thumbnail, title, shortTitle, client, technos, type, role);
-
-            // Create projects in DOM
-            $('section.project#'+id+' > .content').html(app.templateProjectData(app.projects[i]));
+            self.projects[i] = new Project(id, link, thumbnail, title, shortTitle, client, stack, type, role);
         }
 
         // Set each project section position 
