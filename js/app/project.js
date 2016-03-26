@@ -12,33 +12,10 @@ var Project = function(id, link, thumbnail, title, shortTitle, client, technos, 
     this.domElem = $('#' + this.id);
 };
 
-Project.prototype.show = function() {
-    this.bind();
-
-    var self = this;
-
-    this.domElem.fadeIn(function(){
-        self.onAnimateIn();
-    });
+Project.prototype.show = function(){
+    this.domElem.stop().fadeIn();
 };
 
-Project.prototype.hide = function() {
-    var self = this;
-
-    this.domElem.fadeOut(function(){
-        self.onAnimateOut();
-    });
-};
-
-
-Project.prototype.bind = function() {
-    
-};
-
-Project.prototype.onAnimateIn = function() {
-    
-};
-
-Project.prototype.onAnimateOut = function() {
-    
+Project.prototype.hide = function(){
+    this.domElem.stop().fadeOut();
 };
