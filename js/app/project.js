@@ -1,4 +1,5 @@
-var Project = function(id, link, thumbnail, title, shortTitle, client, stack, type, role) {
+var Project = function(key, id, link, thumbnail, title, shortTitle, client, stack, type, role) {
+    this.key = key;
     this.id = id;
     this.link = link;
     this.thumbnail = thumbnail;

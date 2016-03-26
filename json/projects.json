@@ -1,6 +1,7 @@
 {
     "projects": [
         {
+            "key": 1,
             "id": "zerator",
             "link": "http://zerator.com",
             "thumbnail": "img/projects/zerator.jpg",
@@ -12,6 +13,7 @@
             "role": "UI/UX Designer / Front-End Developer"
         },
         {
+            "key": 2,
             "id": "serreChevalier",
             "link": "http://www.serre-chevalier.com/",
             "thumbnail": "img/projects/serre-chevalier.jpg",
@@ -23,6 +25,7 @@
             "role": "Front-End Developer"
         },
         {
+            "key": 3,
             "id": "4lTrophy",
             "link": "http://4ltrophy.paul.yt/",
             "thumbnail": "img/projects/4l-trophy.jpg",
@@ -34,6 +37,7 @@
             "role": "UI/UX Designer / Front-End Developer"
         },
         {
+            "key": 4,
             "id": "domingo",
             "link": "http://domingo.tv",
             "thumbnail": "img/projects/domingo.jpg",

@@ -24,6 +24,7 @@ App.prototype.init = function(){
 
         var entry = data.projects;
         for (var i = 0; i < entry.length; i++){
+            var key = entry[i].key;
             var id = entry[i].id;
             var link = entry[i].link;
             var thumbnail = entry[i].thumbnail;
@@ -35,7 +36,7 @@ App.prototype.init = function(){
             var role = entry[i].role;
 
             // Create projects objects
-            self.projects[i] = new Project(id, link, thumbnail, title, shortTitle, client, stack, type, role);
+            self.projects[i] = new Project(key, id, link, thumbnail, title, shortTitle, client, stack, type, role);
         }
 
         // Set each project section position 
