@@ -128,7 +128,7 @@ section.project {
 
         .misc {
             margin-bottom: 30px;
-            max-width: 50%;
+            max-width: 70%;
 
             &:last-child {
                 margin-bottom: 0;
@@ -157,11 +157,11 @@ section.project {
 
                     &:hover {
                         transform: translateY(-20px);
-                        transition: all ease .25s;
+                        transition: all ease .35s;
 
                         &:after {
                             max-height: 100%;
-                            transition: all ease .25s;
+                            transition: all ease .35s;
                         }
                     }
                 }
