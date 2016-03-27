@@ -1,4 +1,4 @@
-var Project = function(key, id, link, thumbnail, title, shortTitle, client, stack, type, role) {
+var Project = function(key, id, link, thumbnail, title, shortTitle, client, stack, type, role, more) {
     this.key = key;
     this.id = id;
     this.link = link;
@@ -6,9 +6,10 @@ var Project = function(key, id, link, thumbnail, title, shortTitle, client, stac
     this.title = title;
     this.shortTitle = shortTitle;
     this.client = client;
-    this.stack = stack;
     this.type = type;
     this.role = role;
+    this.stack = stack;
+    this.more = more;
 
     this.domElem = $('#' + this.id);
 };

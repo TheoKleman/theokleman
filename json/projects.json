@@ -8,9 +8,10 @@
             "title": "Zerator",
             "shortTitle": "Zerator",
             "client": "Streamer - Youtuber",
-            "stack": "AngularJS / Wordpress / SASS",
             "type": "Freelance project",
-            "role": "UI/UX Designer / Front-End Developer"
+            "role": "UI/UX Designer / Front-End Developer",
+            "stack": "AngularJS / Wordpress / SASS",
+            "more": ["audience","+600k pages visited monthly"]
         },
         {
             "key": 2,
@@ -19,10 +20,10 @@
             "thumbnail": "img/projects/serre-chevalier.jpg",
             "title": "Serre-Chevalier",
             "shortTitle": "Serre-Che",
-            "client": "Ski station",
-            "stack": "Wordpress / SASS / SITRA2 API",
-            "type": "Provider for Mezcalito",
-            "role": "Front-End Developer"
+            "client": "Tourist Office / Ski station",
+            "type": "Provider for <a target='blank' href='http://mezcalito.fr'>Mezcalito</a>",
+            "role": "Front-End Developer",
+            "stack": "Wordpress / SASS / SITRA2 API"
         },
         {
             "key": 3,
@@ -32,9 +33,9 @@
             "title": "4L Trophy",
             "shortTitle": "4L Trophy",
             "client": "Association - Enfants du Désert",
-            "stack": "AngularJS / Canvas / SASS / API REST",
             "type": "School Project",
-            "role": "UI/UX Designer / Front-End Developer"
+            "role": "UI/UX Designer / Front-End Developer",
+            "stack": "AngularJS / Canvas / SASS / API REST"
         },
         {
             "key": 4,
@@ -44,9 +45,10 @@
             "title": "Domingo",
             "shortTitle": "Domingo",
             "client": "Streamer - Youtuber",
-            "stack": "AngularJS / SASS",
             "type": "Freelance Project",
-            "role": "UI/UX Designer / Front-End Developer"
+            "role": "UI/UX Designer / Front-End Developer",
+            "stack": "AngularJS / SASS",
+            "more": ["audience","+600k pages visited monthly"]
         }
     ]
 }

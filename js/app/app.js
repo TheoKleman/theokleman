@@ -31,12 +31,13 @@ App.prototype.init = function(){
             var title = entry[i].title;
             var shortTitle = entry[i].shortTitle;
             var client = entry[i].client;
-            var stack = entry[i].stack;
             var type = entry[i].type;
             var role = entry[i].role;
+            var stack = entry[i].stack;
+            var more = entry[i].more;
 
             // Create projects objects
-            self.projects[i] = new Project(key, id, link, thumbnail, title, shortTitle, client, stack, type, role);
+            self.projects[i] = new Project(key, id, link, thumbnail, title, shortTitle, client, type, role, stack, more);
         }
 
         // Set each project section position 
