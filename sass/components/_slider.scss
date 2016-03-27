@@ -138,10 +138,32 @@ section.project {
                 display: block;
                 font-size: 18px;
                 margin: 0;
+                overflow: hidden;
 
                 a {
+                    display: inline-block;
+                    position: relative;
                     color: $orange;
                     text-decoration: none;
+
+                    &:after {
+                        position: absolute;
+                        content: attr(data-text);
+                        left: 0;
+                        display: block;
+                        color: $white;
+                        overflow: hidden;
+                    }
+
+                    &:hover {
+                        transform: translateY(-20px);
+                        transition: all ease .25s;
+
+                        &:after {
+                            max-height: 100%;
+                            transition: all ease .25s;
+                        }
+                    }
                 }
 
                 &.label {

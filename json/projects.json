@@ -21,7 +21,7 @@
             "title": "Serre-Chevalier",
             "shortTitle": "Serre-Che",
             "client": "Tourist Office / Ski station",
-            "type": "Provider for <a target='blank' href='http://mezcalito.fr'>Mezcalito</a>",
+            "type": "Provider for <a target='blank' href='http://mezcalito.fr' data-text='Mezcalito'>Mezcalito</a>",
             "role": "Front-End Developer",
             "stack": "Wordpress / SASS / SITRA2 API"
         },
