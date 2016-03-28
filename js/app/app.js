@@ -57,6 +57,10 @@ App.prototype.slider = function(){
     });
 };
 
+App.prototype.loader = function() {
+    // Loading between slides
+};
+
 App.prototype.toggleProject = function(direction, project){
     var self = this;
 
