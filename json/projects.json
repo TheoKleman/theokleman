@@ -9,7 +9,7 @@
             "shortTitle": "Zerator",
             "client": "Streamer - Youtuber",
             "type": "Freelance project",
-            "role": "UI/UX Designer / Front-End Developer",
+            "role": "UI-UX Designer / Front-End Developer",
             "stack": "AngularJS / Wordpress / SASS",
             "more": ["audience","+600k pages visited monthly"]
         },
@@ -35,7 +35,7 @@
             "shortTitle": "4L Trophy",
             "client": "Association - Enfants du Désert",
             "type": "School Project",
-            "role": "Lead Front-End Developer / UI/UX Designer",
+            "role": "Lead Front-End Developer / UI-UX Designer",
             "stack": "AngularJS / Canvas / SASS / API REST",
             "more": ["github","Repositories <a target='_blank' href='https://github.com/PauuloG/4L-sticker-front' data-text='Front-End'>Front-End</a> / <a target='_blank' href='https://github.com/PauuloG/4L-sticker-back' data-text='Back-End'>Back-End</a>"]
         },
@@ -48,7 +48,7 @@
             "shortTitle": "Domingo",
             "client": "Streamer - Youtuber",
             "type": "Freelance Project",
-            "role": "UI/UX Designer / Front-End Developer",
+            "role": "UI-UX Designer / Front-End Developer",
             "stack": "AngularJS / SASS",
             "more": ["audience","+600k pages visited monthly"]
         }

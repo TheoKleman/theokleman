@@ -4,6 +4,13 @@ var App = function(){
 
     this.sliderTemplateHbs = null;
     this.templateSliderData = null;
+
+    this.controlsTemplateHbs = null;
+    this.templateControlsData = null;
+
+    // templates DOM Elem
+    this.sliderElem = $('section#slider');
+    this.controlsElem = $('nav#controls');
 };
 
 App.prototype.init = function(){
@@ -16,11 +23,17 @@ App.prototype.init = function(){
         self.templateSliderData = Handlebars.compile(self.sliderTemplateHbs);
     });
 
+    // Get controls template
+    $.get('templates/controls.hbs', function(data){
+        self.controlsTemplateHbs = data;
+        self.templateControlsData = Handlebars.compile(self.controlsTemplateHbs);
+    });
+
     // Get projects and template them
     $.getJSON('json/projects.json', function(data){
         // Create slider projects items
         var projects = data;
-        $('section#slider').html(app.templateSliderData(projects));
+        self.sliderElem.html(app.templateSliderData(projects));
 
         var entry = data.projects;
         for (var i = 0; i < entry.length; i++){
@@ -44,16 +57,46 @@ App.prototype.init = function(){
         self.projects[0].show();
         self.currentItem = self.projects[0];
 
+        // Create controls panel in DOM
+        self.controlsElem.html(app.templateControlsData(app));
+
         self.slider();
     });
 };
 
+App.prototype.bind = function() {
+    // Bind controls
+    this.nextItem();
+    this.previousItem();
+};
+
 App.prototype.slider = function(){
+    // Init controls
+    this.bind();
+    
+    // Init sequence between items
+    this.loader();
+};
+
+App.prototype.nextItem = function() {
+    var self = this;
+
     $('.next-project').on('click',function(){
         app.toggleProject('next',app.currentItem);
+        // wtf i'm doing right here ... 😷
+        self.controlsElem.html(app.templateControlsData(app));
+        self.bind();
     });
+};
+
+App.prototype.previousItem = function() {
+    var self = this;
+
     $('.previous-project').on('click',function(){
         app.toggleProject('previous',app.currentItem);
+        // wtf i'm doing right here ... 😷
+        self.controlsElem.html(app.templateControlsData(app));
+        self.bind();
     });
 };
 
@@ -74,8 +117,8 @@ App.prototype.toggleProject = function(direction, project){
                         self.currentItem = self.projects[0];
                     } else {
                         project.hide();
-                        self.currentItem = self.projects[i+1];
                         self.projects[i+1].show();
+                        self.currentItem = self.projects[i+1];
                     }
                 }
             }
@@ -85,12 +128,12 @@ App.prototype.toggleProject = function(direction, project){
                 if (project.id === self.projects[i].id) {
                     if (i === 0) {
                         project.hide();
-                        self.currentItem = self.projects[self.projects.length - 1];
                         self.projects[self.projects.length - 1].show();
+                        self.currentItem = self.projects[self.projects.length - 1];
                     } else {
                         project.hide();
-                        self.currentItem = self.projects[i-1];
                         self.projects[i-1].show();
+                        self.currentItem = self.projects[i-1];
                     }
                 }
             }
