@@ -1,6 +1,8 @@
 var App = function(){
     this.projects = [];
+    this.previousItem = null;
     this.currentItem = null;
+    this.nextItem = null;
 
     this.sliderTemplateHbs = null;
     this.templateSliderData = null;
@@ -55,7 +57,7 @@ App.prototype.init = function(){
 
         // Set each project section position 
         self.projects[0].show();
-        self.currentItem = self.projects[0];
+        self.setCurrentItem(self.projects[0]);
 
         // Create controls panel in DOM
         self.controlsElem.html(app.templateControlsData(app));
@@ -66,35 +68,60 @@ App.prototype.init = function(){
 
 App.prototype.bind = function() {
     // Bind controls
-    this.nextItem();
-    this.previousItem();
+    this.showNextItem();
+    this.showPreviousItem();
+};
+
+App.prototype.setCurrentItem = function(project) {
+    var self = this;
+
+    // Set current item
+    this.currentItem = project;
+
+    // Set next & previous item
+    for (var i = 0; i < this.projects.length; i++){
+        if (project.id === self.projects[i].id){
+            if (i === self.projects.length  - 1){
+                self.nextItem = self.projects[0];
+                self.previousItem = self.projects[self.projects.length - 2];
+            } else if (i === 0){
+                self.nextItem = self.projects[1]
+                self.previousItem = self.projects[self.projects.length - 1];
+            } else {
+                self.nextItem = self.projects[i+1];
+                self.previousItem = self.projects[i-1];
+            }
+        }
+    }
 };
 
 App.prototype.slider = function(){
     // Init controls
     this.bind();
-    
+
     // Init sequence between items
     this.loader();
 };
 
-App.prototype.nextItem = function() {
+App.prototype.showNextItem = function() {
     var self = this;
 
     $('.next-project').on('click',function(){
         app.toggleProject('next',app.currentItem);
-        // wtf i'm doing right here ... 😷
+
+        // Regenerate template and re-bind selectors
         self.controlsElem.html(app.templateControlsData(app));
         self.bind();
     });
 };
 
-App.prototype.previousItem = function() {
+App.prototype.showPreviousItem = function() {
     var self = this;
 
     $('.previous-project').on('click',function(){
         app.toggleProject('previous',app.currentItem);
-        // wtf i'm doing right here ... 😷
+
+        // Regenerate template and re-bind selectors
         self.controlsElem.html(app.templateControlsData(app));
         self.bind();
     });
@@ -112,13 +139,19 @@ App.prototype.toggleProject = function(direction, project){
             for (var i = 0; i < self.projects.length; i++){
                 if (project.id === self.projects[i].id){
                     if (i === self.projects.length  - 1){
+                        // Hide precedent item
                         project.hide();
-                        self.projects[0].show();
-                        self.currentItem = self.projects[0];
+                        // Show next item
+                        self.nextItem.show();
+                        // Set new currentItem
+                        self.setCurrentItem(self.projects[0]);
                     } else {
+                        // Hide precedent item
                         project.hide();
-                        self.projects[i+1].show();
-                        self.currentItem = self.projects[i+1];
+                        // Show next item
+                        self.nextItem.show();
+                        // Set new currentItem
+                        self.setCurrentItem(self.projects[i+1]);
                     }
                 }
             }
@@ -127,13 +160,19 @@ App.prototype.toggleProject = function(direction, project){
             for (var i = 0; i < self.projects.length; i++){
                 if (project.id === self.projects[i].id) {
                     if (i === 0) {
+                        // Hide precedent item
                         project.hide();
-                        self.projects[self.projects.length - 1].show();
-                        self.currentItem = self.projects[self.projects.length - 1];
+                        // Show previous item
+                        self.previousItem.show();
+                        // Set new currentItem
+                        self.setCurrentItem(self.projects[self.projects.length - 1]);
                     } else {
+                        // Hide precedent item
                         project.hide();
-                        self.projects[i-1].show();
-                        self.currentItem = self.projects[i-1];
+                        // Show previous item
+                        self.previousItem.show();
+                        // Set new currentItem
+                        self.setCurrentItem(self.projects[i-1]);
                     }
                 }
             }
