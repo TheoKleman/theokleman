@@ -36,7 +36,7 @@ gulp.task('js_libs', function(){
 });
 
 gulp.task('js_app', function(){
-    return gulp.src('js/app/**/*.js')
+    return gulp.src(['js/app/helpers.js','js/app/**/*.js'])
         .pipe(concat('app.js'))
         .pipe(gulp.dest('js/dist'))
 });

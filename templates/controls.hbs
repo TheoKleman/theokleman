@@ -17,6 +17,18 @@
             </div>
         </div>
     </div>
+
+    <nav class="selectors">
+        <ul>
+        {{#each projects}}
+                <li data-item="{{id}}" class="{{#ifCond ../currentItem.key key }}current{{/ifCond}}">
+                    <span class="title">{{shortTitle}}</span>
+                    <span class="bar"></span>
+                </li>
+        {{/each}}
+        </ul>
+    </nav>
+
     <div class="next-project">
         <div class="icon">
             <div class="icon-wrapper">

@@ -66,12 +66,6 @@ App.prototype.init = function(){
     });
 };
 
-App.prototype.bind = function() {
-    // Bind controls
-    this.showNextItem();
-    this.showPreviousItem();
-};
-
 App.prototype.setCurrentItem = function(project) {
     var self = this;
 
@@ -103,27 +97,53 @@ App.prototype.slider = function(){
     this.loader();
 };
 
-App.prototype.showNextItem = function() {
+App.prototype.bind = function() {
+    // Bind controls
+    this.bindNavItem();
+    this.bindNextItem();
+    this.bindPreviousItem();
+};
+
+App.prototype.reTemplateControls = function() {
+    this.controlsElem.html(app.templateControlsData(app));
+    this.bind();
+};
+
+App.prototype.bindNavItem = function() {
+    var self = this;
+
+    $('.slider-controls > .selectors > ul > li').on('click',function(){
+        var projectId = $(this).attr('data-item');
+        
+        if ( projectId != self.currentItem.id) {
+            // Show new item
+            app.showItem(projectId);
+
+            // Regenerate template and re-bind selectors
+            self.reTemplateControls();
+        }    
+    })
+};
+
+App.prototype.bindNextItem = function() {
     var self = this;
 
     $('.next-project').on('click',function(){
-        app.toggleProject('next',app.currentItem);
+        app.toggleItem('next',app.currentItem);
 
         // Regenerate template and re-bind selectors
-        self.controlsElem.html(app.templateControlsData(app));
-        self.bind();
+        self.reTemplateControls();
     });
 };
 
-App.prototype.showPreviousItem = function() {
+App.prototype.bindPreviousItem = function() {
     var self = this;
 
     $('.previous-project').on('click',function(){
-        app.toggleProject('previous',app.currentItem);
+        app.toggleItem('previous',app.currentItem);
 
         // Regenerate template and re-bind selectors
-        self.controlsElem.html(app.templateControlsData(app));
-        self.bind();
+        self.reTemplateControls();
     });
 };
 
@@ -131,7 +151,22 @@ App.prototype.loader = function() {
     // Loading between slides
 };
 
-App.prototype.toggleProject = function(direction, project){
+App.prototype.showItem = function(projectId) {
+    var self = this;
+    var project = null;
+
+    for (var i = 0; i < this.projects.length; i++){
+        if (projectId === self.projects[i].id){
+            project = self.projects[i];
+        }
+    }
+
+    this.currentItem.hide();
+    project.show();
+    self.setCurrentItem(project);
+};
+
+App.prototype.toggleItem = function(direction, project){
     var self = this;
 
     switch(direction){
