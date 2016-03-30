@@ -15,9 +15,9 @@ var Project = function(key, id, link, thumbnail, title, shortTitle, client, stac
 };
 
 Project.prototype.show = function(){
-    this.domElem.stop().fadeIn();
+    this.domElem.stop().show();
 };
 
 Project.prototype.hide = function(){
-    this.domElem.stop().fadeOut();
+    this.domElem.stop().hide();
 };

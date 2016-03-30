@@ -10,9 +10,18 @@ var App = function(){
     this.controlsTemplateHbs = null;
     this.templateControlsData = null;
 
-    // templates DOM Elem
+    // Templates DOM Elems
     this.sliderElem = $('section#slider');
     this.controlsElem = $('nav#controls');
+
+    // CTA DOM Elems
+    this.controlSelector = null;
+    this.controlNextBtn = null;
+    this.controlPreviousBtn = null;
+
+    // Others
+    this.loaderBar = null;
+    this.loaderTween = null;
 };
 
 App.prototype.init = function(){
@@ -92,16 +101,22 @@ App.prototype.setCurrentItem = function(project) {
 App.prototype.slider = function(){
     // Init controls
     this.bind();
-
-    // Init sequence between items
-    this.loader();
 };
 
 App.prototype.bind = function() {
     // Bind controls
+    this.controlSelector = $('.slider-controls > .selectors > ul > li');
+    this.controlNextBtn = $('.next-project');
+    this.controlPreviousBtn = $('.previous-project');
     this.bindNavItem();
     this.bindNextItem();
     this.bindPreviousItem();
+
+    // Bind other elems 
+    this.loaderBar = $('.slider-loader > span');
+
+    // Init sequence between items
+    this.loader();
 };
 
 App.prototype.reTemplateControls = function() {
@@ -112,7 +127,7 @@ App.prototype.reTemplateControls = function() {
 App.prototype.bindNavItem = function() {
     var self = this;
 
-    $('.slider-controls > .selectors > ul > li').on('click',function(){
+    this.controlSelector.on('click',function(){
         var projectId = $(this).attr('data-item');
         
         if ( projectId != self.currentItem.id) {
@@ -128,7 +143,7 @@ App.prototype.bindNavItem = function() {
 App.prototype.bindNextItem = function() {
     var self = this;
 
-    $('.next-project').on('click',function(){
+    this.controlNextBtn.on('click',function(){
         app.toggleItem('next',app.currentItem);
 
         // Regenerate template and re-bind selectors
@@ -139,7 +154,7 @@ App.prototype.bindNextItem = function() {
 App.prototype.bindPreviousItem = function() {
     var self = this;
 
-    $('.previous-project').on('click',function(){
+    this.controlPreviousBtn.on('click',function(){
         app.toggleItem('previous',app.currentItem);
 
         // Regenerate template and re-bind selectors
@@ -148,7 +163,20 @@ App.prototype.bindPreviousItem = function() {
 };
 
 App.prototype.loader = function() {
+    var self = this;
+
     // Loading between slides
+    var maxLoaderWidth = this.loaderBar.parent().width();
+
+    this.loaderTween = TweenMax.to(this.loaderBar,5,{
+        width: maxLoaderWidth,
+        ease: Power0.easeNone,
+        onComplete: function(){
+            self.toggleItem('next',self.currentItem);
+            // Regenerate template and re-bind selectors
+            self.reTemplateControls();
+        }
+    });
 };
 
 App.prototype.showItem = function(projectId) {
