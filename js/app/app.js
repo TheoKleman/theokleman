@@ -181,6 +181,11 @@ App.prototype.loader = function() {
             }
         }
     });
+
+    TweenMax.to(this.currentItem.background,7,{
+        scale: 1.15,
+        ease: Power0.easeNone
+    });
 };
 
 App.prototype.showItem = function(projectId) {

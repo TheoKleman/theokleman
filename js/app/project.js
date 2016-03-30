@@ -12,6 +12,7 @@ var Project = function(key, id, link, thumbnail, title, shortTitle, client, stac
     this.more = more;
 
     this.domElem = $('#' + this.id);
+    this.background = $('#' + this.id + ' > .project--thumbnail');
 };
 
 Project.prototype.show = function(){
