@@ -71,6 +71,7 @@ App.prototype.init = function(){
         // Create controls panel in DOM
         self.controlsElem.html(app.templateControlsData(app));
 
+        // Init slider
         self.slider();
     });
 };
@@ -168,13 +169,16 @@ App.prototype.loader = function() {
     // Loading between slides
     var maxLoaderWidth = this.loaderBar.parent().width();
 
-    this.loaderTween = TweenMax.to(this.loaderBar,5,{
+    this.loaderTween = TweenMax.to(this.loaderBar,7,{
         width: maxLoaderWidth,
         ease: Power0.easeNone,
         onComplete: function(){
-            self.toggleItem('next',self.currentItem);
-            // Regenerate template and re-bind selectors
-            self.reTemplateControls();
+            // Check if animation is really completed
+            if (self.loaderTween.progress() === 1) {
+                self.toggleItem('next',self.currentItem);
+                // Regenerate template and re-bind selectors
+                self.reTemplateControls();
+            }
         }
     });
 };
