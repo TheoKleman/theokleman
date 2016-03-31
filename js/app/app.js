@@ -139,11 +139,10 @@ App.prototype.timer = function() {
     var maxtimerWidth = this.timerBar.parent().width();
 
     self.timerTimeLine = new TimelineMax();
-    self.timerTimeLine.restart();
 
     self.timerTimeLine.to(this.timerBar, 10, {
         width: maxtimerWidth,
-        ease: Power0.easeNone
+        ease: Power0.easeNone,
     }, "timerBar")
     self.timerTimeLine.to(this.currentItem.background, 10, {
         scale: 1.15,
@@ -153,8 +152,6 @@ App.prototype.timer = function() {
             // Check if animation is really completed
             if (self.timerTimeLine.progress() === 1) {
                 self.toggleItem('next',self.currentItem);
-                self.timerTimeLine.restart();
-                self.timer();
             }
         }
     }, "timerBar");
@@ -165,6 +162,13 @@ App.prototype.setCurrentItem = function(project) {
 
     // Set current item
     this.currentItem = project;
+
+    // Reset timer animations
+    if (this.timerTimeLine) {
+        this.timerTimeLine.restart();
+        self.timerTimeLine.kill();
+        self.timer();
+    }
 
     // Set next & previous item (+labels)
     for (var i = 0; i < this.projects.length; i++){
