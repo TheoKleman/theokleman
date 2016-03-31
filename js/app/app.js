@@ -269,8 +269,29 @@ App.prototype.controlsBtnAnimateInOut = function(control, newBtn){
 
     // Animations timeline
     oldBtn.removeClass('active');
-    oldBtn.hide();
+    oldBtn.fadeOut(250);
     newBtn.addClass('active');
-    newBtn.show();
+    newBtn.delay(250).fadeIn(250);
+
+    // var tl = new TimelineMax();
+    // tl.to(oldBtn,.25,{
+    //     autoAlpha: 0,
+    //     // y: 10,
+    //     ease: Power2.easeOut,
+    //     onComplete: function(){
+    //         oldBtn.removeClass('active');
+    //         oldBtn.hide();
+    //         newBtn.addClass('active');
+    //         newBtn.show();
+    //     }
+    // })
+    // tl.from(newBtn,.25,{
+    //     autoAlpha: 1,
+    //     // y: -10,
+    //     ease: Power2.easeOut,
+    //     onComplete: function(){
+    //         newBtn.addClass('active');
+    //     }
+    // })
 }
 
