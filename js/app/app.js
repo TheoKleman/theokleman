@@ -169,30 +169,24 @@ App.prototype.setCurrentItem = function(project) {
             if (i === self.projects.length  - 1){ // Case : Last item
                 // Set next item
                 self.nextItem = self.projects[0];
-                self.controlsBtnAnimateOut("next");
-                self.controlsBtnAnimateIn(this.controlsNextInner[0]);
+                self.controlsBtnAnimateInOut("next",this.controlsNextInner[0]);
                 // Set previous item
                 self.previousItem = self.projects[self.projects.length - 2];
-                self.controlsBtnAnimateOut("previous");
-                self.controlsBtnAnimateIn(this.controlsPreviousInner[self.projects.length - 2]);
+                self.controlsBtnAnimateInOut("previous",this.controlsPreviousInner[self.projects.length - 2]);
             } else if (i === 0){ // Case : First item
                 // Set next item
                 self.nextItem = self.projects[1];
-                self.controlsBtnAnimateOut("next");
-                self.controlsBtnAnimateIn(this.controlsNextInner[1]);
+                self.controlsBtnAnimateInOut("next",this.controlsNextInner[1]);
                 // Set previous item
                 self.previousItem = self.projects[self.projects.length - 1];
-                self.controlsBtnAnimateOut("previous");
-                self.controlsBtnAnimateIn(this.controlsPreviousInner[self.projects.length - 1]);
+                self.controlsBtnAnimateInOut("previous",this.controlsPreviousInner[self.projects.length - 1]);
             } else { // Other cases
                 // Set next item
                 self.nextItem = self.projects[i+1];
-                self.controlsBtnAnimateOut("next");
-                self.controlsBtnAnimateIn(this.controlsNextInner[i+1]);
+                self.controlsBtnAnimateInOut("next",this.controlsNextInner[i+1]);
                 // Set previous item
                 self.previousItem = self.projects[i-1];
-                self.controlsBtnAnimateOut("previous");
-                self.controlsBtnAnimateIn(this.controlsPreviousInner[i-1]);   
+                self.controlsBtnAnimateInOut("previous",this.controlsPreviousInner[i-1]);
             }
         }
     }
@@ -262,17 +256,21 @@ App.prototype.toggleItem = function(direction, project){
     }
 };
 
-App.prototype.controlsBtnAnimateOut = function(control) {
+App.prototype.controlsBtnAnimateInOut = function(control, newBtn){
+    // Set oldBtn DOM Elem 
     if (control === "previous") {
-        var btnText = $('.previous-project .text-inner.active');
+        var oldBtn = $('.previous-project .text-inner.active');
     } else if (control === "next") {
-        var btnText = $('.next-project .text-inner.active');
+        var oldBtn = $('.next-project .text-inner.active');
     }
-    btnText.removeClass('active');
-    btnText.hide();
-};
 
-App.prototype.controlsBtnAnimateIn = function(btnText) {
-    $(btnText).addClass('active');
-    $(btnText).fadeIn();
-};
+    // Set newBtn DOM Elem
+    newBtn = $(newBtn);
+
+    // Animations timeline
+    oldBtn.removeClass('active');
+    oldBtn.hide();
+    newBtn.addClass('active');
+    newBtn.show();
+}
+
