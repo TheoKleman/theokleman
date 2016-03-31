@@ -22,10 +22,10 @@ var App = function(){
     // Others DOM Elems
     this.scrollerNext = null;
     this.scrollerPrevious = null;
-    this.loaderBar = null;
+    this.timerBar = null;
 
     // Tweens
-    this.loaderTween = null;
+    this.timerTimeLine = null;
 };
 
 App.prototype.init = function(){
@@ -85,7 +85,7 @@ App.prototype.slider = function(){
     this.setCurrentItem(this.projects[0]);
 
     // Init sequence between items
-    // this.loader();
+    this.timer();
 };
 
 App.prototype.bind = function() {
@@ -100,7 +100,7 @@ App.prototype.bind = function() {
     this.bindPreviousItem();
 
     // Bind other elems 
-    this.loaderBar = $('.slider-loader > span');
+    this.timerBar = $('.slider-loader > span');
 };
 
 App.prototype.bindNavItem = function() {
@@ -134,27 +134,30 @@ App.prototype.bindPreviousItem = function() {
     });
 };
 
-App.prototype.loader = function() {
+App.prototype.timer = function() {
     var self = this;
-    var maxLoaderWidth = this.loaderBar.parent().width();
+    var maxtimerWidth = this.timerBar.parent().width();
 
-    this.loaderTween = TweenMax.to(this.loaderBar,7,{
-        width: maxLoaderWidth,
+    self.timerTimeLine = new TimelineMax();
+    self.timerTimeLine.restart();
+
+    self.timerTimeLine.to(this.timerBar, 10, {
+        width: maxtimerWidth,
+        ease: Power0.easeNone
+    }, "timerBar")
+    self.timerTimeLine.to(this.currentItem.background, 10, {
+        scale: 1.15,
+        rotation: 2,
         ease: Power0.easeNone,
         onComplete: function(){
             // Check if animation is really completed
-            if (self.loaderTween.progress() === 1) {
-                self.toggleItem('next',self.currentItem)
+            if (self.timerTimeLine.progress() === 1) {
+                self.toggleItem('next',self.currentItem);
+                self.timerTimeLine.restart();
+                self.timer();
             }
         }
-    });
-
-    TweenMax.to(this.currentItem.background,7,{
-        css:{
-            scale: 1.15
-        },
-        ease: Power0.easeNone
-    });
+    }, "timerBar");
 };
 
 App.prototype.setCurrentItem = function(project) {
@@ -269,9 +272,11 @@ App.prototype.controlsBtnAnimateInOut = function(control, newBtn){
 
     // Animations timeline
     oldBtn.removeClass('active');
-    oldBtn.fadeOut(250);
+    oldBtn.hide();
+    // oldBtn.fadeOut(250);
     newBtn.addClass('active');
-    newBtn.delay(250).fadeIn(250);
+    newBtn.show();
+    // newBtn.delay(250).fadeIn(250);
 
     // var tl = new TimelineMax();
     // tl.to(oldBtn,.25,{
