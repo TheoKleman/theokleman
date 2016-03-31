@@ -1,5 +1,6 @@
 * {
     box-sizing: border-box;
+    will-change: transition, transform, left, bottom, right;
 }
 
 html, body {

@@ -19,8 +19,12 @@ var App = function(){
     this.controlNextBtn = null;
     this.controlPreviousBtn = null;
 
-    // Others
+    // Others DOM Elems
+    this.scrollerNext = null;
+    this.scrollerPrevious = null;
     this.loaderBar = null;
+
+    // Tweens
     this.loaderTween = null;
 };
 
@@ -64,44 +68,24 @@ App.prototype.init = function(){
             self.projects[i] = new Project(key, id, link, thumbnail, title, shortTitle, client, type, role, stack, more);
         }
 
-        // Set each project section position 
-        self.projects[0].show();
-        self.setCurrentItem(self.projects[0]);
-
-        // Create controls panel in DOM
-        self.controlsElem.html(app.templateControlsData(app));
-
         // Init slider
         self.slider();
     });
 };
 
-App.prototype.setCurrentItem = function(project) {
-    var self = this;
-
-    // Set current item
-    this.currentItem = project;
-
-    // Set next & previous item
-    for (var i = 0; i < this.projects.length; i++){
-        if (project.id === self.projects[i].id){
-            if (i === self.projects.length  - 1){
-                self.nextItem = self.projects[0];
-                self.previousItem = self.projects[self.projects.length - 2];
-            } else if (i === 0){
-                self.nextItem = self.projects[1]
-                self.previousItem = self.projects[self.projects.length - 1];
-            } else {
-                self.nextItem = self.projects[i+1];
-                self.previousItem = self.projects[i-1];
-            }
-        }
-    }
-};
-
 App.prototype.slider = function(){
+    // Create controls panel in DOM
+    this.controlsElem.html(app.templateControlsData(app));
+
     // Init controls
     this.bind();
+
+    // Set each project section position 
+    this.projects[0].show();
+    this.setCurrentItem(this.projects[0]);
+
+    // Init sequence between items
+    // this.loader();
 };
 
 App.prototype.bind = function() {
@@ -109,20 +93,14 @@ App.prototype.bind = function() {
     this.controlSelector = $('.slider-controls > .selectors > ul > li');
     this.controlNextBtn = $('.next-project');
     this.controlPreviousBtn = $('.previous-project');
+    this.controlsNextInner = $('.next-project .text-inner');
+    this.controlsPreviousInner = $('.previous-project .text-inner');
     this.bindNavItem();
     this.bindNextItem();
     this.bindPreviousItem();
 
     // Bind other elems 
     this.loaderBar = $('.slider-loader > span');
-
-    // Init sequence between items
-    this.loader();
-};
-
-App.prototype.reTemplateControls = function() {
-    this.controlsElem.html(app.templateControlsData(app));
-    this.bind();
 };
 
 App.prototype.bindNavItem = function() {
@@ -135,8 +113,7 @@ App.prototype.bindNavItem = function() {
             // Show new item
             app.showItem(projectId);
 
-            // Regenerate template and re-bind selectors
-            self.reTemplateControls();
+            // Todo change nav item
         }    
     })
 };
@@ -146,9 +123,6 @@ App.prototype.bindNextItem = function() {
 
     this.controlNextBtn.on('click',function(){
         app.toggleItem('next',app.currentItem);
-
-        // Regenerate template and re-bind selectors
-        self.reTemplateControls();
     });
 };
 
@@ -157,16 +131,11 @@ App.prototype.bindPreviousItem = function() {
 
     this.controlPreviousBtn.on('click',function(){
         app.toggleItem('previous',app.currentItem);
-
-        // Regenerate template and re-bind selectors
-        self.reTemplateControls();
     });
 };
 
 App.prototype.loader = function() {
     var self = this;
-
-    // Loading between slides
     var maxLoaderWidth = this.loaderBar.parent().width();
 
     this.loaderTween = TweenMax.to(this.loaderBar,7,{
@@ -175,17 +144,58 @@ App.prototype.loader = function() {
         onComplete: function(){
             // Check if animation is really completed
             if (self.loaderTween.progress() === 1) {
-                self.toggleItem('next',self.currentItem);
-                // Regenerate template and re-bind selectors
-                self.reTemplateControls();
+                self.toggleItem('next',self.currentItem)
             }
         }
     });
 
     TweenMax.to(this.currentItem.background,7,{
-        scale: 1.15,
+        css:{
+            scale: 1.15
+        },
         ease: Power0.easeNone
     });
+};
+
+App.prototype.setCurrentItem = function(project) {
+    var self = this;
+
+    // Set current item
+    this.currentItem = project;
+
+    // Set next & previous item (+labels)
+    for (var i = 0; i < this.projects.length; i++){
+        if (project.id === self.projects[i].id){
+            if (i === self.projects.length  - 1){ // Case : Last item
+                // Set next item
+                self.nextItem = self.projects[0];
+                self.controlsBtnAnimateOut("next");
+                self.controlsBtnAnimateIn(this.controlsNextInner[0]);
+                // Set previous item
+                self.previousItem = self.projects[self.projects.length - 2];
+                self.controlsBtnAnimateOut("previous");
+                self.controlsBtnAnimateIn(this.controlsPreviousInner[self.projects.length - 2]);
+            } else if (i === 0){ // Case : First item
+                // Set next item
+                self.nextItem = self.projects[1];
+                self.controlsBtnAnimateOut("next");
+                self.controlsBtnAnimateIn(this.controlsNextInner[1]);
+                // Set previous item
+                self.previousItem = self.projects[self.projects.length - 1];
+                self.controlsBtnAnimateOut("previous");
+                self.controlsBtnAnimateIn(this.controlsPreviousInner[self.projects.length - 1]);
+            } else { // Other cases
+                // Set next item
+                self.nextItem = self.projects[i+1];
+                self.controlsBtnAnimateOut("next");
+                self.controlsBtnAnimateIn(this.controlsNextInner[i+1]);
+                // Set previous item
+                self.previousItem = self.projects[i-1];
+                self.controlsBtnAnimateOut("previous");
+                self.controlsBtnAnimateIn(this.controlsPreviousInner[i-1]);   
+            }
+        }
+    }
 };
 
 App.prototype.showItem = function(projectId) {
@@ -250,4 +260,19 @@ App.prototype.toggleItem = function(direction, project){
             }
             break;
     }
+};
+
+App.prototype.controlsBtnAnimateOut = function(control) {
+    if (control === "previous") {
+        var btnText = $('.previous-project .text-inner.active');
+    } else if (control === "next") {
+        var btnText = $('.next-project .text-inner.active');
+    }
+    btnText.removeClass('active');
+    btnText.hide();
+};
+
+App.prototype.controlsBtnAnimateIn = function(btnText) {
+    $(btnText).addClass('active');
+    $(btnText).fadeIn();
 };

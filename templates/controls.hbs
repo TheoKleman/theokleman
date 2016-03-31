@@ -11,17 +11,19 @@
             </div>
         </div>
         <div class="text">
-            <div class="text-inner">
-                <span class="number">#{{previousItem.key}}</span>
-                <span class="title">{{previousItem.title}}</span>
-            </div>
+            {{#each projects}}
+                <div class="text-inner">
+                    <span class="number">#{{key}}</span>
+                    <span class="title">{{title}}</span>
+                </div>
+            {{/each}}
         </div>
     </div>
 
     <nav class="selectors">
         <ul>
         {{#each projects}}
-                <li data-item="{{id}}" class="{{#ifCond ../currentItem.key key }}current{{/ifCond}}">
+                <li data-item="{{id}}" class="{{#ifCond key key }}current{{/ifCond}}">
                     <span class="title">{{shortTitle}}</span>
                     <span class="bar"></span>
                 </li>
@@ -41,10 +43,12 @@
             </div>
         </div>
         <div class="text">
-            <div class="text-inner">
-                <span class="number">#{{nextItem.key}}</span>
-                <span class="title">{{nextItem.title}}</span>
-            </div>
+            {{#each projects}}
+                <div class="text-inner">
+                    <span class="number">#{{key}}</span>
+                    <span class="title">{{title}}</span>
+                </div>
+            {{/each}}
         </div>
     </div>
 </div>            
