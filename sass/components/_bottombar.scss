@@ -144,7 +144,7 @@
                     height: 50px;
                     width: 50px;
                     text-align: left;
-                    transition: all ease .25s;
+                    transition: all ease-in-out .25s;
 
                     &:first-child {
                         margin-left: 0;
@@ -158,25 +158,27 @@
                         span.title {
                             transform: translate3d(0,-5px,0);
                             opacity: 1;
-                            transition: all ease .25s;
+                            transition: all ease-in-out .25s;
                             transition-delay: .1s;
                         }
 
                         span.bar {
                             transform: translate3d(0,5px,0);
-                            transition: all ease .25s;
+                            transition: all ease-in-out .25s;
                         }
                     }
 
                     &.current {
                         span.bar {
                             width: 30px;
+                            transition: width ease-in-out .25s;
+                            transition-delay: .1s;
                         }
                     }
 
                     span.title {
                         position: absolute;
-                        transition: all ease .25s;
+                        transition: all ease-in-out .25s;
                         font-size: 18px;
                         left: 0;
                         top: 5px;
@@ -192,7 +194,7 @@
                         width: 50px;
                         background: $white;
                         transform: translate3d(0,-50%,0);
-                        transition: all ease .25s;
+                        transition: all ease-in-out .25s;
                     }
                 }
             }

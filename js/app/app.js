@@ -20,8 +20,6 @@ var App = function(){
     this.controlPreviousBtn = null;
 
     // Others DOM Elems
-    this.scrollerNext = null;
-    this.scrollerPrevious = null;
     this.timerBar = null;
 
     // Tweens
@@ -195,6 +193,8 @@ App.prototype.setCurrentItem = function(project) {
                 self.previousItem = self.projects[i-1];
                 self.controlsBtnAnimateInOut("previous",this.controlsPreviousInner[i-1]);
             }
+            // Set current nav selector
+            self.controlsSelectorAddCurrentClass(self.controlSelector[i]);
         }
     }
 };
@@ -261,6 +261,11 @@ App.prototype.toggleItem = function(direction, project){
             }
             break;
     }
+};
+
+App.prototype.controlsSelectorAddCurrentClass = function(currentItem) {
+    $('.slider-controls > .selectors > ul > li.current').removeClass('current');
+    $(currentItem).addClass('current');
 };
 
 App.prototype.controlsBtnAnimateInOut = function(control, newBtn){
