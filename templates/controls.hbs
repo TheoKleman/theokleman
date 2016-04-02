@@ -12,7 +12,7 @@
         </div>
         <div class="text">
             {{#each projects}}
-                <div class="text-inner">
+                <div class="text-inner {{#ifCond @index 0}}active{{/ifCond}}">
                     <span class="number">#{{key}}</span>
                     <span class="title">{{title}}</span>
                 </div>
@@ -44,7 +44,7 @@
         </div>
         <div class="text">
             {{#each projects}}
-                <div class="text-inner">
+                <div class="text-inner {{#ifCond @index 0}}active{{/ifCond}}">
                     <span class="number">#{{key}}</span>
                     <span class="title">{{title}}</span>
                 </div>

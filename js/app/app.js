@@ -24,6 +24,9 @@ var App = function(){
 
     // Tweens
     this.timerTimeLine = null;
+
+    // Others
+    this.disableButton = false;
 };
 
 App.prototype.init = function(){
@@ -120,7 +123,9 @@ App.prototype.bindNextItem = function() {
     var self = this;
 
     this.controlNextBtn.on('click',function(){
-        app.toggleItem('next',app.currentItem);
+        if (self.disableButton === false) {
+            app.toggleItem('next',app.currentItem);
+        }
     });
 };
 
@@ -128,7 +133,9 @@ App.prototype.bindPreviousItem = function() {
     var self = this;
 
     this.controlPreviousBtn.on('click',function(){
-        app.toggleItem('previous',app.currentItem);
+        if (self.disableButton === false) {
+            app.toggleItem('previous',app.currentItem);
+        }
     });
 };
 
@@ -153,6 +160,8 @@ App.prototype.timer = function() {
             }
         }
     }, "timerBar");
+
+    self.timerTimeLine.pause();
 };
 
 App.prototype.setCurrentItem = function(project) {
@@ -269,6 +278,8 @@ App.prototype.controlsSelectorAddCurrentClass = function(currentItem) {
 };
 
 App.prototype.controlsBtnAnimateInOut = function(control, newBtn){
+    var self = this;
+
     // Set oldBtn DOM Elem 
     if (control === "previous") {
         var oldBtn = $('.previous-project .text-inner.active');
@@ -280,32 +291,29 @@ App.prototype.controlsBtnAnimateInOut = function(control, newBtn){
     newBtn = $(newBtn);
 
     // Animations timeline
-    oldBtn.removeClass('active');
-    oldBtn.hide();
-    // oldBtn.fadeOut(250);
-    newBtn.addClass('active');
-    newBtn.show();
-    // newBtn.delay(250).fadeIn(250);
-
-    // var tl = new TimelineMax();
-    // tl.to(oldBtn,.25,{
-    //     autoAlpha: 0,
-    //     // y: 10,
-    //     ease: Power2.easeOut,
-    //     onComplete: function(){
-    //         oldBtn.removeClass('active');
-    //         oldBtn.hide();
-    //         newBtn.addClass('active');
-    //         newBtn.show();
-    //     }
-    // })
-    // tl.from(newBtn,.25,{
-    //     autoAlpha: 1,
-    //     // y: -10,
-    //     ease: Power2.easeOut,
-    //     onComplete: function(){
-    //         newBtn.addClass('active');
-    //     }
-    // })
+    var tl = new TimelineMax();
+    tl.to(oldBtn, .25, {
+        opacity: 0,
+        y: 5,
+        ease: Power2.easeOut,
+        onStart: function(){
+            self.disableButton = true;
+        },
+        onComplete: function(){
+            oldBtn.removeClass('active');
+            tl.set(oldBtn, {clearProps:"y"});
+        }
+    });
+    tl.to(newBtn, .25, {
+        opacity: 1,
+        y: 0,
+        ease: Power2.easeOut,
+        onComplete: function(){
+            if (tl.progress() === 1) {
+                self.disableButton = false;
+                newBtn.addClass('active');
+            }
+        }
+    });
 }
 
