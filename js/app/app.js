@@ -160,8 +160,6 @@ App.prototype.timer = function() {
             }
         }
     }, "timerBar");
-
-    self.timerTimeLine.pause();
 };
 
 App.prototype.setCurrentItem = function(project) {
