@@ -172,23 +172,22 @@ App.prototype.timer = function() {
             width: maxtimerWidth
         },
         ease: Power0.easeNone,
-    }, "timerBar")
+        onComplete: function(){
+            // Check if animation is really completed & reset timer
+            if (self.timerTimeLine.progress() === 1) {
+                self.toggleItem('next',self.currentItem);
+            }
+        }
+    });
     self.timerTimeLine.to(this.currentItem.background, 10, {
         rotation: "+=1",
         x: "-=30",
         y: "-=30",
         ease: Power0.easeNone,
         onStart: function(){
-            self.timerTimeLine.set(self.currentItem.background, {clearProps:"rotation,x,y"});
-        },
-        onComplete: function(){
-            // Check if animation is really completed
-            if (self.timerTimeLine.progress() === 1) {
-                self.timerTimeLine.set(self.currentItem.background, {clearProps:"rotation,x,y"});
-                self.toggleItem('next',self.currentItem);
-            }
+            self.timerTimeLine.set(self.previousItem.background, {clearProps:"rotation,x,y"});
         }
-    }, "timerBar");
+    }, "-=10");
 };
 
 App.prototype.setCurrentItem = function(project) {
