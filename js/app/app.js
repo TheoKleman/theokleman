@@ -145,7 +145,6 @@ App.prototype.bindPreviousItem = function() {
 
 App.prototype.onKeydown = function() {
     var self = this;
-    console.log(event.keyCode);
 
     // Left arrow
     if (event.keyCode == 37) {
@@ -197,9 +196,11 @@ App.prototype.setCurrentItem = function(project) {
 
     // Reset timer animations
     if (this.timerTimeLine) {
-        this.timerTimeLine.restart();
-        self.timerTimeLine.kill();
-        self.timer();
+        setTimeout(function(){
+            self.timerTimeLine.kill();
+            self.timerTimeLine.restart();
+            self.timer();
+        }, 250);
     }
 
     // Set next & previous item (+labels)

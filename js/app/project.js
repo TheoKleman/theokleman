@@ -16,6 +16,7 @@ var Project = function(key, id, link, thumbnail, title, shortTitle, client, stac
     this.content = $('#'+ this.id +' > .project--content');
     this.leftBox = $('#'+ this.id +' > .project--content > .project--content--left');
     this.rightBox = $('#'+ this.id +' > .project--content > .project--content--right');
+    this.labels = $('#'+ this.id +' > .project--content > .project--content--right > .misc >.content');
 };
 
 Project.prototype.show = function(){
@@ -26,7 +27,7 @@ Project.prototype.show = function(){
     tl.to(this.domElem, .4, {
         scale: 1,
         opacity: 1,
-        ease: Power2.easeOut,
+        ease: Power2.easeInOut,
         delay: .25,
         onStart: function(){
             self.domElem.addClass('active');
@@ -34,18 +35,26 @@ Project.prototype.show = function(){
     });
     tl.from(this.leftBox, .4, {
         y: -10,
-        ease: Power4.easeOut,
+        ease: Power4.easeInOut,
         onComplete: function(){
             tl.set(self.leftBox, {clearProps:"y"});
         },
     }, "-=0.4");
     tl.from(this.rightBox, .4, {
         y: 10,
-        ease: Power4.easeOut,
+        ease: Power2.easeInOut,
         onComplete: function(){
             tl.set(self.rightBox, {clearProps:"y"});
         },
     }, "-=0.4");
+    tl.staggerFrom(
+        [this.labels[0],this.labels[1],this.labels[2],this.labels[3]], .4, {
+        opacity: 0,
+        ease: Power2.easeInOut,
+        onComplete: function(){
+            tl.set(self.labels, {clearProps:"opacity"});
+        },
+    }, .03, "-=0.3");
 };
 
 Project.prototype.hide = function(){
@@ -56,7 +65,7 @@ Project.prototype.hide = function(){
     tl.to(this.domElem, .35, {
         y: "+=10",
         opacity: 0,
-        ease: Power2.easeOut,
+        ease: Power2.easeInOut,
         onComplete: function(){
             self.domElem.removeClass('active');
             tl.set(self.domElem, {clearProps:"y"});
@@ -64,7 +73,7 @@ Project.prototype.hide = function(){
     })
     tl.to(this.content, .35, {
         scale: .97,
-        ease: Power2.easeOut,
+        ease: Power2.easeInOut,
         onComplete: function(){
             tl.set(self.content, {clearProps:"scale"});
         },
