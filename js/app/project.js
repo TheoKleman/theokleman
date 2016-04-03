@@ -56,7 +56,7 @@ Project.prototype.show = function(){
             tl.set(self.labels, {clearProps:"opacity"});
         },
     }, .03, "-=0.3");
-    tl.from(this.cta, .4, {
+    tl.from(this.cta, .2, {
         opacity: 0,
         ease: Power2.easeInOut,
         onComplete: function(){

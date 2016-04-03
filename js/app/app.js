@@ -174,10 +174,13 @@ App.prototype.timer = function() {
         ease: Power0.easeNone,
     }, "timerBar")
     self.timerTimeLine.to(this.currentItem.background, 10, {
-        rotation: "+=3",
+        rotation: "+=1",
         x: "-=30",
         y: "-=30",
         ease: Power0.easeNone,
+        onStart: function(){
+            self.timerTimeLine.set(self.currentItem.background, {clearProps:"rotation,x,y"});
+        },
         onComplete: function(){
             // Check if animation is really completed
             if (self.timerTimeLine.progress() === 1) {
@@ -191,9 +194,6 @@ App.prototype.timer = function() {
 App.prototype.setCurrentItem = function(project) {
     var self = this;
 
-    // Set current item
-    this.currentItem = project;
-
     // Reset timer animations
     if (this.timerTimeLine) {
         setTimeout(function(){
@@ -202,6 +202,9 @@ App.prototype.setCurrentItem = function(project) {
             self.timer();
         }, 250);
     }
+
+    // Set current item
+    this.currentItem = project;
 
     // Set next & previous item (+labels)
     for (var i = 0; i < this.projects.length; i++){
