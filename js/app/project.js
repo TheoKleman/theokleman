@@ -63,7 +63,7 @@ Project.prototype.hide = function(){
         }
     })
     tl.to(this.content, .25, {
-        scale: .95,
+        scale: .97,
         ease: Power2.easeOut,
         onComplete: function(){
             tl.set(self.content, {clearProps:"scale"});
