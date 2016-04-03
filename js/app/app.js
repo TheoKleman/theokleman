@@ -99,11 +99,62 @@ App.prototype.bind = function() {
     this.bindNavItem();
     this.bindNextItem();
     this.bindPreviousItem();
+
     // On keydown
     $(window).on('keydown', $.proxy(this.onKeydown, this));
 
     // Bind other elems 
     this.timerBar = $('.slider-loader > span');
+};
+
+App.prototype.bindPauseTimer = function() {
+    var self = this;
+
+    this.currentItem.content.on('click',function(){
+        self.togglePlayPause();
+    });
+    this.currentItem.pauseArea.on('click',function(){
+        self.togglePlayPause(); 
+    });
+};
+
+App.prototype.togglePlayPause = function() {
+    var self = this;
+    var container = $('.play-pause-timer');
+    var playIcon = $('.play-pause-timer i.fa.fa-play');
+    var pauseIcon = $('.play-pause-timer i.fa.fa-pause');
+
+    playIcon.css('display','none');
+    pauseIcon.css('display','none');
+
+    var tl = new TimelineMax();
+    tl.pause();
+    tl.to(container, .2, {
+        opacity: 1,
+        scale: 1.05,
+        ease: Power2.easeInOut,
+    });
+    tl.to(container, .5, {
+        opacity: 0,
+        ease: Power2.easeInOut,
+        onComplete: function(){
+            container.removeClass('active');
+        }
+    });
+
+    if (self.disableControls === false) {
+        if (self.timerTimeLine.paused() === true ){
+            self.timerTimeLine.play();
+            playIcon.css('display','block');
+            container.addClass('active');
+            tl.play();
+        } else {
+            self.timerTimeLine.pause();
+            pauseIcon.css('display','block');
+            container.addClass('active');
+            tl.play();
+        }
+    }
 };
 
 App.prototype.bindNavItem = function() {
@@ -116,8 +167,6 @@ App.prototype.bindNavItem = function() {
             if ( projectId != self.currentItem.id) {
                 // Show new item
                 app.showItem(projectId);
-
-                // Todo change nav item
             }
         }
     })
@@ -164,6 +213,9 @@ App.prototype.onKeydown = function() {
 App.prototype.timer = function() {
     var self = this;
     var maxtimerWidth = this.timerBar.parent().width();
+
+    // Init pause timer
+    this.bindPauseTimer();
 
     self.timerTimeLine = new TimelineMax();
 

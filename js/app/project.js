@@ -13,6 +13,7 @@ var Project = function(key, id, link, thumbnail, title, shortTitle, client, stac
 
     this.domElem = $('#'+ this.id);
     this.background = $('#'+ this.id +' > .project--thumbnail');
+    this.pauseArea = $('#'+ this.id +' > .project--filter');
     this.content = $('#'+ this.id +' > .project--content');
     this.leftBox = $('#'+ this.id +' > .project--content > .project--content--left');
     this.cta = $('#'+ this.id +' > .project--content > .project--content--left a.launch');
