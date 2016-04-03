@@ -18,6 +18,7 @@
   "dependencies": {
     "gsap": "^1.18.2",
     "jquery": "^2.2.2",
-    "handlebars": "^4.0.5"
+    "handlebars": "^4.0.5",
+    "components-font-awesome": "^4.5.0"
   }
 }
