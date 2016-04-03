@@ -27,7 +27,7 @@ Project.prototype.show = function(){
         scale: 1,
         opacity: 1,
         ease: Power2.easeOut,
-        delay: 0.25,
+        delay: .25,
         onStart: function(){
             self.domElem.addClass('active');
         },
@@ -53,8 +53,8 @@ Project.prototype.hide = function(){
 
     // Show animation
     var tl = new TimelineMax();
-    tl.to(this.domElem, .25, {
-        y: 10,
+    tl.to(this.domElem, .35, {
+        y: "+=10",
         opacity: 0,
         ease: Power2.easeOut,
         onComplete: function(){
@@ -62,11 +62,11 @@ Project.prototype.hide = function(){
             tl.set(self.domElem, {clearProps:"y"});
         }
     })
-    tl.to(this.content, .25, {
+    tl.to(this.content, .35, {
         scale: .97,
         ease: Power2.easeOut,
         onComplete: function(){
             tl.set(self.content, {clearProps:"scale"});
         },
-    }, "-=0.25");
+    }, "-=0.35");
 };

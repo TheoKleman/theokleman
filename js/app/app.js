@@ -99,6 +99,8 @@ App.prototype.bind = function() {
     this.bindNavItem();
     this.bindNextItem();
     this.bindPreviousItem();
+    // On keydown
+    $(window).on('keydown', $.proxy(this.onKeydown, this));
 
     // Bind other elems 
     this.timerBar = $('.slider-loader > span');
@@ -141,6 +143,25 @@ App.prototype.bindPreviousItem = function() {
     });
 };
 
+App.prototype.onKeydown = function() {
+    var self = this;
+    console.log(event.keyCode);
+
+    // Left arrow
+    if (event.keyCode == 37) {
+        if (self.disableControls === false) {
+            app.toggleItem('previous',app.currentItem);
+        }
+    };
+
+    // Right arrow
+    if (event.keyCode == 39) {
+        if (self.disableControls === false) {
+            app.toggleItem('next',app.currentItem);
+        }
+    };
+};
+
 App.prototype.timer = function() {
     var self = this;
     var maxtimerWidth = this.timerBar.parent().width();
@@ -154,14 +175,14 @@ App.prototype.timer = function() {
         ease: Power0.easeNone,
     }, "timerBar")
     self.timerTimeLine.to(this.currentItem.background, 10, {
-        rotation: 2,
-        x: -20,
-        y: -20,
+        rotation: "+=3",
+        x: "-=30",
+        y: "-=30",
         ease: Power0.easeNone,
         onComplete: function(){
             // Check if animation is really completed
             if (self.timerTimeLine.progress() === 1) {
-                self.timerTimeLine.set(self.currentItem.background, {clearProps:"x,y"});
+                self.timerTimeLine.set(self.currentItem.background, {clearProps:"rotation,x,y"});
                 self.toggleItem('next',self.currentItem);
             }
         }
@@ -320,4 +341,3 @@ App.prototype.controlsBtnAnimateInOut = function(control, newBtn){
         }
     });
 }
-
