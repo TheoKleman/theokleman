@@ -167,7 +167,7 @@ App.prototype.timer = function() {
 
     self.timerTimeLine = new TimelineMax();
 
-    self.timerTimeLine.to(this.timerBar, 10, {
+    self.timerTimeLine.to(this.timerBar, 15, {
         css: {
             width: maxtimerWidth
         },
@@ -179,15 +179,15 @@ App.prototype.timer = function() {
             }
         }
     });
-    self.timerTimeLine.to(this.currentItem.background, 10, {
-        rotation: "+=1",
-        x: "-=30",
-        y: "-=30",
+    self.timerTimeLine.to(this.currentItem.background, 15, {
+        rotation: "+=1.5",
+        x: "-=40",
+        y: "-=40",
         ease: Power0.easeNone,
         onStart: function(){
             self.timerTimeLine.set(self.previousItem.background, {clearProps:"rotation,x,y"});
         }
-    }, "-=10");
+    }, "-=15");
 };
 
 App.prototype.setCurrentItem = function(project) {
