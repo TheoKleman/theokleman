@@ -112,13 +112,14 @@ section.project {
             span {
                 height: 37px;
                 min-width: 21px;
-                line-height: 36px;
+                line-height: 37px;
                 display: inline-block;
                 vertical-align: top;
 
                 &.icon {
                     margin-left: 15px;
-                    padding-top: 3px;
+                    height: 40px;
+                    line-height: 40px;
                 }
             }
 

@@ -175,7 +175,7 @@
                     &.current {
                         span.bar {
                             width: 30px;
-                            transition: width ease-in-out .25s;
+                            transition: all ease-in-out .25s;
                             transition-delay: .1s;
                         }
                     }
