@@ -17,7 +17,7 @@ var Project = function(key, id, link, thumbnail, title, shortTitle, client, stac
     this.leftBox = $('#'+ this.id +' > .project--content > .project--content--left');
     this.cta = $('#'+ this.id +' > .project--content > .project--content--left a.launch');
     this.rightBox = $('#'+ this.id +' > .project--content > .project--content--right');
-    this.labels = $('#'+ this.id +' > .project--content > .project--content--right > .misc >.content');
+    this.labels = $('#'+ this.id +' > .project--content > .project--content--right > .misc');
 };
 
 Project.prototype.show = function(){

@@ -322,7 +322,7 @@ App.prototype.controlsBtnAnimateInOut = function(control, newBtn){
     var tl = new TimelineMax();
     tl.to(oldBtn, .25, {
         opacity: 0,
-        y: 5,
+        y: 2,
         ease: Power2.easeOut,
         onStart: function(){
             self.disableControls = true;
