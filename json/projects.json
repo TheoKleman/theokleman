@@ -11,7 +11,7 @@
             "type": "Freelance project",
             "role": "UI-UX Designer / Front-End Developer",
             "stack": "AngularJS / Wordpress / SASS",
-            "more": ["audience","+600k pages visited monthly"]
+            "more": ["audience","+600k monthly viewed pages"]
         },
         {
             "key": 2,
@@ -50,7 +50,7 @@
             "type": "Freelance Project",
             "role": "UI-UX Designer / Front-End Developer",
             "stack": "AngularJS / SASS",
-            "more": ["audience","+600k pages visited monthly"]
+            "more": ["audience","+600k monthly viewed pages"]
         }
     ]
 }

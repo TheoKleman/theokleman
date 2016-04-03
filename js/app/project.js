@@ -16,9 +16,33 @@ var Project = function(key, id, link, thumbnail, title, shortTitle, client, stac
 };
 
 Project.prototype.show = function(){
-    this.domElem.stop().show();
+    var self = this;
+
+    // Show animation
+    var tl = new TimelineMax();
+    tl.to(this.domElem, .25, {
+        scale: 1,
+        opacity: 1,
+        ease: Power2.easeOut,
+        delay: 0.25,
+        onStart: function(){
+            self.domElem.addClass('active');
+        },
+    })
 };
 
 Project.prototype.hide = function(){
-    this.domElem.stop().hide();
+    var self = this;
+
+    // Show animation
+    var tl = new TimelineMax();
+    tl.to(this.domElem, .25, {
+        scale: 1.05,
+        opacity: 0,
+        ease: Power2.easeOut,
+        onComplete: function(){
+            self.domElem.removeClass('active');
+            tl.set(self.domElem, {clearProps:"scale"});
+        }
+    })
 };

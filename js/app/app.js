@@ -26,7 +26,7 @@ var App = function(){
     this.timerTimeLine = null;
 
     // Others
-    this.disableButton = false;
+    this.disableControls = false;
 };
 
 App.prototype.init = function(){
@@ -108,7 +108,7 @@ App.prototype.bindNavItem = function() {
     var self = this;
 
     this.controlSelector.on('click',function(){
-        if (self.disableButton === false) {
+        if (self.disableControls === false) {
             var projectId = $(this).attr('data-item');
             
             if ( projectId != self.currentItem.id) {
@@ -125,7 +125,7 @@ App.prototype.bindNextItem = function() {
     var self = this;
 
     this.controlNextBtn.on('click',function(){
-        if (self.disableButton === false) {
+        if (self.disableControls === false) {
             app.toggleItem('next',app.currentItem);
         }
     });
@@ -135,7 +135,7 @@ App.prototype.bindPreviousItem = function() {
     var self = this;
 
     this.controlPreviousBtn.on('click',function(){
-        if (self.disableButton === false) {
+        if (self.disableControls === false) {
             app.toggleItem('previous',app.currentItem);
         }
     });
@@ -300,7 +300,7 @@ App.prototype.controlsBtnAnimateInOut = function(control, newBtn){
         y: 5,
         ease: Power2.easeOut,
         onStart: function(){
-            self.disableButton = true;
+            self.disableControls = true;
         },
         onComplete: function(){
             oldBtn.removeClass('active');
@@ -313,7 +313,7 @@ App.prototype.controlsBtnAnimateInOut = function(control, newBtn){
         ease: Power2.easeOut,
         onComplete: function(){
             if (tl.progress() === 1) {
-                self.disableButton = false;
+                self.disableControls = false;
                 newBtn.addClass('active');
             }
         }
