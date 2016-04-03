@@ -15,6 +15,7 @@ var Project = function(key, id, link, thumbnail, title, shortTitle, client, stac
     this.background = $('#'+ this.id +' > .project--thumbnail');
     this.content = $('#'+ this.id +' > .project--content');
     this.leftBox = $('#'+ this.id +' > .project--content > .project--content--left');
+    this.cta = $('#'+ this.id +' > .project--content > .project--content--left a.launch');
     this.rightBox = $('#'+ this.id +' > .project--content > .project--content--right');
     this.labels = $('#'+ this.id +' > .project--content > .project--content--right > .misc >.content');
 };
@@ -55,6 +56,13 @@ Project.prototype.show = function(){
             tl.set(self.labels, {clearProps:"opacity"});
         },
     }, .03, "-=0.3");
+    tl.from(this.cta, .4, {
+        opacity: 0,
+        ease: Power2.easeInOut,
+        onComplete: function(){
+            tl.set(self.cta, {clearProps:"opacity"});
+        },
+    }, "-=0.3");
 };
 
 Project.prototype.hide = function(){
