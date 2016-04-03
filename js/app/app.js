@@ -108,14 +108,16 @@ App.prototype.bindNavItem = function() {
     var self = this;
 
     this.controlSelector.on('click',function(){
-        var projectId = $(this).attr('data-item');
-        
-        if ( projectId != self.currentItem.id) {
-            // Show new item
-            app.showItem(projectId);
+        if (self.disableButton === false) {
+            var projectId = $(this).attr('data-item');
+            
+            if ( projectId != self.currentItem.id) {
+                // Show new item
+                app.showItem(projectId);
 
-            // Todo change nav item
-        }    
+                // Todo change nav item
+            }
+        }
     })
 };
 
@@ -146,12 +148,15 @@ App.prototype.timer = function() {
     self.timerTimeLine = new TimelineMax();
 
     self.timerTimeLine.to(this.timerBar, 10, {
-        width: maxtimerWidth,
+        css: {
+            width: maxtimerWidth
+        },
         ease: Power0.easeNone,
     }, "timerBar")
     self.timerTimeLine.to(this.currentItem.background, 10, {
-        scale: 1.15,
         rotation: 2,
+        x: -20,
+        y: -20,
         ease: Power0.easeNone,
         onComplete: function(){
             // Check if animation is really completed

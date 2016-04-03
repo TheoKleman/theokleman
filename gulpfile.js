@@ -29,6 +29,7 @@ gulp.task('js_libs', function(){
             'js/vendors/jquery/dist/jquery.min.js',
             'js/vendors/handlebars/handlebars.min.js',
             'js/vendors/gsap/src/minified/TweenMax.min.js',
+            'js/vendors/gsap/src/minified/plugins/CSSPlugin.min.js',
         ])
         .pipe(concat('vendors.js'))
         .pipe(uglify('vendors.js'))
