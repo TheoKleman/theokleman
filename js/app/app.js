@@ -161,6 +161,7 @@ App.prototype.timer = function() {
         onComplete: function(){
             // Check if animation is really completed
             if (self.timerTimeLine.progress() === 1) {
+                tl.set(self.currentItem.background, {clearProps:"x,y"});
                 self.toggleItem('next',self.currentItem);
             }
         }
