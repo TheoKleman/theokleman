@@ -87,6 +87,7 @@ App.prototype.slider = function(){
 
     // Init sequence between items
     this.timer();
+    this.timerTimeLine.pause();
 };
 
 App.prototype.bind = function() {
