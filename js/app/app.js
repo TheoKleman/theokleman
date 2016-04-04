@@ -109,17 +109,6 @@ App.prototype.bind = function() {
     this.timerBar = $('.slider-loader > span');
 };
 
-App.prototype.bindPauseTimer = function() {
-    var self = this;
-
-    this.currentItem.content.on('click',function(){
-        self.togglePlayPause();
-    });
-    this.currentItem.pauseArea.on('click',function(){
-        self.togglePlayPause(); 
-    });
-};
-
 App.prototype.togglePlayPause = function() {
     var self = this;
     var container = $('.play-pause-timer');
@@ -196,7 +185,7 @@ App.prototype.bindPreviousItem = function() {
 
 App.prototype.onKeydown = function() {
     var self = this;
-    
+
     if (self.disableControls === false) {
         self.disableControls === true;
         // Left arrow
@@ -230,9 +219,6 @@ App.prototype.onMousewheel = function() {
 App.prototype.timer = function() {
     var self = this;
     var maxtimerWidth = this.timerBar.parent().width();
-
-    // Init pause timer
-    this.bindPauseTimer();
 
     self.timerTimeLine = new TimelineMax();
 
