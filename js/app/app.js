@@ -104,6 +104,7 @@ App.prototype.bind = function() {
     this.bindNextItem();
     this.bindPreviousItem();
     this.bindAboutCta();
+    this.bindHovers();
 
     // On keydown
     $(window).on('keydown', $.proxy(this.onKeydown, this));
@@ -113,6 +114,64 @@ App.prototype.bind = function() {
     // Bind other elems 
     this.timerBar = $('.slider-loader > span');
 };
+
+App.prototype.bindHovers = function() {
+    var self = this;
+
+    // Controls next project
+    $('.bottom-bar div.previous-project').on('mouseenter',function(){
+        self.controlsIconAnimation('previous');
+    });
+
+    // Controls previous project
+    $('.bottom-bar div.next-project').on('mouseenter',function(){
+        self.controlsIconAnimation('next'); 
+    })
+};
+
+App.prototype.controlsIconAnimation = function(direction) {
+    if (direction === "previous") {
+        var icon = $('.bottom-bar div.previous-project .icon svg');
+        
+        // Animate
+        var tl = new TimelineMax();
+        tl.to(icon, .25, {
+            x: -35,
+            ease: Power2.easeInOut,
+        });
+        tl.to(icon, 0, {
+            x: 35,
+            ease: Power2.easeInOut,
+        });
+        tl.to(icon, .25, {
+            x: 0,
+            ease: Power2.easeInOut,
+            onComplete: function(){
+                tl.kill();
+            }
+        });
+    } else if (direction === "next") {
+        var icon = $('.bottom-bar div.next-project .icon svg');
+        
+        // Animate
+        var tl = new TimelineMax();
+        tl.to(icon, .25, {
+            x: 35,
+            ease: Power2.easeInOut,
+        });
+        tl.to(icon, 0, {
+            x: -35,
+            ease: Power2.easeInOut,
+        });
+        tl.to(icon, .25, {
+            x: 0,
+            ease: Power2.easeInOut,
+            onComplete: function(){
+                tl.kill();
+            }
+        });   
+    }
+}
 
 App.prototype.bindAboutCta = function() {
     var self = this;
@@ -345,6 +404,7 @@ App.prototype.toggleItem = function(direction, project){
                     }
                 }
             }
+            self.controlsIconAnimation('next');
             break;
         case 'previous':
             for (var i = 0; i < self.projects.length; i++){
@@ -366,6 +426,7 @@ App.prototype.toggleItem = function(direction, project){
                     }
                 }
             }
+            self.controlsIconAnimation('previous');
             break;
     }
 };
