@@ -13,11 +13,14 @@ var App = function(){
     // Templates DOM Elems
     this.sliderElem = $('section#slider');
     this.controlsElem = $('nav#controls');
+    this.aboutElem = $('section#about');
 
     // CTA DOM Elems
     this.controlSelector = null;
     this.controlNextBtn = null;
     this.controlPreviousBtn = null;
+    this.aboutCta = $('.cta-about');
+    this.aboutCtaLabel = $('.cta-about > .label > span');
 
     // Others DOM Elems
     this.timerBar = null;
@@ -100,6 +103,7 @@ App.prototype.bind = function() {
     this.bindNavItem();
     this.bindNextItem();
     this.bindPreviousItem();
+    this.bindAboutCta();
 
     // On keydown
     $(window).on('keydown', $.proxy(this.onKeydown, this));
@@ -110,43 +114,53 @@ App.prototype.bind = function() {
     this.timerBar = $('.slider-loader > span');
 };
 
-App.prototype.togglePlayPause = function() {
+App.prototype.bindAboutCta = function() {
     var self = this;
-    var container = $('.play-pause-timer');
-    var playIcon = $('.play-pause-timer i.fa.fa-play');
-    var pauseIcon = $('.play-pause-timer i.fa.fa-pause');
 
-    playIcon.css('display','none');
-    pauseIcon.css('display','none');
-
-    var tl = new TimelineMax();
-    tl.pause();
-    tl.to(container, .2, {
-        opacity: 1,
-        scale: 1.05,
-        ease: Power2.easeInOut,
-    });
-    tl.to(container, .5, {
-        opacity: 0,
-        ease: Power2.easeInOut,
-        onComplete: function(){
-            container.removeClass('active');
-        }
-    });
-
-    if (self.disableControls === false) {
-        if (self.timerTimeLine.paused() === true ){
-            self.timerTimeLine.play();
-            playIcon.css('display','block');
-            container.addClass('active');
-            tl.play();
+    this.aboutCta.on('click',function(){
+        if (self.aboutElem.hasClass('active')) {
+            // Animate out
+            var tl = new TimelineMax();
+            tl.to(self.aboutElem, .4, {
+                opacity: 0,
+                ease: Power2.easeInOut,
+                onComplete: function(){
+                    self.aboutElem.removeClass('active');
+                    self.disableControls = false;
+                    self.aboutCtaLabel.text('About');
+                },
+            });
         } else {
-            self.timerTimeLine.pause();
-            pauseIcon.css('display','block');
-            container.addClass('active');
-            tl.play();
+            var socials = $('section#about nav.socials a');
+            // Animate in
+            var tl = new TimelineMax();
+            tl.to(self.aboutElem, .4, {
+                opacity: 1,
+                ease: Power2.easeInOut,
+                onStart: function(){
+                    self.aboutElem.addClass('active');
+                    self.disableControls = true;
+                },
+                onComplete: function(){
+                    self.aboutCtaLabel.text('Close');
+                }
+            });
+            tl.staggerFrom($('section#about h1'), .2, {
+                opacity: 0,
+                y: -20,
+                ease: Power2.easeInOut
+            }, .05);
+            tl.staggerFrom([$('section#about > p'), $('section#about > span')], .2, {
+                opacity: 0,
+                ease: Power2.easeInOut
+            }, .05);
+            tl.staggerFrom([socials[0],socials[1],socials[2],socials[3],socials[4]], .3, {
+                opacity: 0,
+                x: -5,
+                ease: Power2.easeInOut
+            }, .10);
         }
-    }
+    })
 };
 
 App.prototype.bindNavItem = function() {
