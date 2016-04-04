@@ -5,6 +5,10 @@
 
 html, body {
     overflow: hidden;
+
+    @media screen and (max-width: $tablet) {
+        overflow: visible;
+    }
 }
 
 body {

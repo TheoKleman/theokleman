@@ -5,6 +5,10 @@
     height: 82px;
     padding: 30px 60px;
 
+    @media screen and (max-width: $tablet) {
+        display: none;
+    }
+
     button.cta-about {
         display: inline-block;
         background-color: transparent;
