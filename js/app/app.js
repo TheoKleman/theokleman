@@ -102,6 +102,8 @@ App.prototype.bind = function() {
 
     // On keydown
     $(window).on('keydown', $.proxy(this.onKeydown, this));
+    // On scroll
+    $(document).on('mousewheel', $.proxy(this.onMousewheel, this));
 
     // Bind other elems 
     this.timerBar = $('.slider-loader > span');
@@ -194,20 +196,35 @@ App.prototype.bindPreviousItem = function() {
 
 App.prototype.onKeydown = function() {
     var self = this;
-
-    // Left arrow
-    if (event.keyCode == 37) {
-        if (self.disableControls === false) {
+    
+    if (self.disableControls === false) {
+        self.disableControls === true;
+        // Left arrow
+        if (event.keyCode == 37) {
             app.toggleItem('previous',app.currentItem);
-        }
-    };
+        };
 
-    // Right arrow
-    if (event.keyCode == 39) {
-        if (self.disableControls === false) {
+        // Right arrow
+        if (event.keyCode == 39) {
             app.toggleItem('next',app.currentItem);
-        }
-    };
+        };
+    }
+};
+
+App.prototype.onMousewheel = function() {
+    var self = this;
+
+    if (self.disableControls === false) {
+        // Down
+        if (event.deltaY < -20) {
+            app.toggleItem('previous',app.currentItem);
+        };
+
+        // Up
+        if (event.deltaY > 20) {
+            app.toggleItem('next',app.currentItem);
+        };
+    }
 };
 
 App.prototype.timer = function() {
