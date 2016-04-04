@@ -6,6 +6,10 @@
     height: 170px;
     width: 100%;
 
+    @media screen and (max-width: $tablet) {
+        display: none;
+    }
+
     .slider-controls {
         position: relative;
         width: 100%;
@@ -132,6 +136,10 @@
             top: 50%;
             left: 50%;
             transform: translate3d(-50%,-50%,0);
+
+            @media screen and (max-width: $desktop) {
+                display: none;
+            }
 
             ul {
                 padding: 0;

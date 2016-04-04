@@ -5,6 +5,10 @@ section#slider {
     bottom: 0;
     left: 0;
     height: 100%;
+
+    @media screen and (max-width: $tablet) {
+        display: none;
+    }
 }
 
 section.project {
@@ -136,7 +140,7 @@ section.project {
 
         .misc {
             margin-bottom: 30px;
-            max-width: 80%;
+            max-width: 90%;
 
             &:last-child {
                 margin-bottom: 0;
@@ -184,6 +188,21 @@ section.project {
                     font-family: $gotham;
                     text-transform: uppercase;
                 }
+            }
+        }
+    }
+
+    @media screen and (max-width: $desktop) {
+        &--left {
+            h2 {
+                font-size: 85px;
+                line-height: 60px;
+            }
+        }
+
+        &--right {
+            .misc span {
+                font-size: 16px;
             }
         }
     }
