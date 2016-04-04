@@ -127,6 +127,44 @@ App.prototype.bindHovers = function() {
     $('.bottom-bar div.next-project').on('mouseenter',function(){
         self.controlsIconAnimation('next'); 
     })
+
+    // Launch website btn 
+    $('.project--content--left .launch').on('mouseenter',function(){
+        var icon = $('.project--content--left .launch .icon svg');
+        var iconColor = $('.project--content--left .launch .icon svg .st0');
+
+        // Animate
+        var tl = new TimelineMax();
+        tl.to(icon, .25, {
+            x: 40,
+            ease: Power2.easeInOut,
+        });
+        tl.to(icon, 0, {
+            opacity: 0,
+            x: -10,
+            ease: Power2.easeInOut,
+        });
+        tl.to(icon, .25, {
+            opacity: 1,
+            x: 0,
+            ease: Power2.easeInOut,
+            onComplete: function(){
+                tl.kill();
+            }
+        });
+    });
+    $('.project--content--left .launch').on('mouseout',function(){
+        var iconColor = $('.project--content--left .launch .icon svg .st0');
+        // Animate
+        var tl = new TimelineMax();
+        tl.to(iconColor, .25, {
+            fill: "#FF8A66",
+            ease: Power2.easeInOut,
+            onComplete: function(){
+                tl.kill();
+            }
+        });
+    });
 };
 
 App.prototype.controlsIconAnimation = function(direction) {
