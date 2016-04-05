@@ -56,7 +56,7 @@ gulp.task('sass', function(){
                 this.emit('end');
             }
         }))
-        .pipe(sass({outputStyle: 'nested'}).on('error', sass.logError))
+        .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
         .pipe(autoprefixer({
             browsers: ['last 2 versions']
         }))
