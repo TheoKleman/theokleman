@@ -35,8 +35,8 @@ var App = function(){
 };
 
 App.prototype.init = function(){
-
     var self = this;
+
     // Get projects and template them
     $.getJSON('json/projects.json', function(data){
         // Create slider projects items
@@ -61,8 +61,8 @@ App.prototype.init = function(){
             self.projects[i] = new Project(key, id, link, thumbnail, title, shortTitle, client, type, role, stack, more);
         }
 
-        // Init slider
-        self.slider();
+        // Init website with loader
+        self.loader();
     });
 };
 
@@ -79,6 +79,28 @@ App.prototype.slider = function(){
 
     // Init sequence between items
     this.timer();
+};
+
+App.prototype.loader = function() {
+    var self = this;
+    var loaderElem = $('section#loader');
+    var loaderElemInner = $('section#loader > div');
+
+    loaderElemInner.addClass('active');
+
+    // Animate
+    var tl = new TimelineMax();
+    tl.to(loaderElem, .4, {
+        scale: .98,
+        opacity: 0,
+        delay: 2.5,
+        ease: Power2.easeInOut,
+        onComplete: function(){
+            loaderElem.css('z-index','-1');
+            // Init slider
+            self.slider();
+        }
+    });  
 };
 
 App.prototype.bind = function() {
