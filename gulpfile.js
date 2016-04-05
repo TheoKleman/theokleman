@@ -5,22 +5,28 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var watch = require('gulp-watch');
 var plumber = require('gulp-plumber');
+var wrap = require('gulp-wrap');
+var declare = require('gulp-declare');
+var handlebars = require('gulp-handlebars');
 var browserSync  = require('browser-sync').create();
 var reload = browserSync.reload;
 
-gulp.task('default', ['js_libs', 'js_app', 'sass'], function(){
-    browserSync.init({
-        proxy: "http://theokleman.local/"
-    });
+gulp.task('default', ['js_libs', 'js_app', 'sass', 'template'], function(){
+    // browserSync.init({
+    //     proxy: "http://theokleman.local/"
+    // });
 
     gulp.watch('js/app/**/*.js', ['js_app']);
     gulp.watch('sass/**/*.scss', ['sass']);
+    gulp.watch('templates/**/*', ['template']);
 
-    gulp.watch([
-            './js/app/**/*.js',
-            './js/vendors/**/*.js',
-            "index.html"
-        ]).on('change', browserSync.reload);
+    gulp
+        .watch([
+                './js/app/**/*.js',
+                './js/vendors/**/*.js',
+                "index.html"
+            ])
+        // .on('change', browserSync.reload);
 });
 
 gulp.task('js_libs', function(){
@@ -56,4 +62,17 @@ gulp.task('sass', function(){
         }))
         .pipe(gulp.dest('css/'))
         .pipe(browserSync.stream());
+});
+
+gulp.task('template', function() {
+  return gulp.src('templates/**/*.hbs')
+            .pipe(handlebars())
+            .pipe(wrap('Handlebars.template(<%= contents %>)'))
+            .pipe(declare({
+              namespace: 'templates',
+              noRedeclare: true,
+            }))
+            .pipe(concat('template.js'))
+            .pipe(gulp.dest('js/dist'));
+
 });

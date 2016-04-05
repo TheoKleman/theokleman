@@ -4,6 +4,8 @@ var App = function(){
     this.currentItem = null;
     this.nextItem = null;
 
+    this.templates = templates;
+
     this.sliderTemplateHbs = null;
     this.templateSliderData = null;
 
@@ -35,24 +37,11 @@ var App = function(){
 App.prototype.init = function(){
 
     var self = this;
-
-    // Get slider template
-    $.get('templates/slider.hbs', function(data){
-        self.sliderTemplateHbs = data;
-        self.templateSliderData = Handlebars.compile(self.sliderTemplateHbs);
-    });
-
-    // Get controls template
-    $.get('templates/controls.hbs', function(data){
-        self.controlsTemplateHbs = data;
-        self.templateControlsData = Handlebars.compile(self.controlsTemplateHbs);
-    });
-
     // Get projects and template them
     $.getJSON('json/projects.json', function(data){
         // Create slider projects items
         var projects = data;
-        self.sliderElem.html(app.templateSliderData(projects));
+        self.sliderElem.html(self.templates.slider(projects));
 
         var entry = data.projects;
         for (var i = 0; i < entry.length; i++){
@@ -79,7 +68,7 @@ App.prototype.init = function(){
 
 App.prototype.slider = function(){
     // Create controls panel in DOM
-    this.controlsElem.html(app.templateControlsData(app));
+    this.controlsElem.html(self.templates.controls(app));
 
     // Init controls
     this.bind();
