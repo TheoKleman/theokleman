@@ -317,13 +317,14 @@ App.prototype.onMousewheel = function() {
     var self = this;
 
     if (self.disableControls === false) {
+        self.disableControls === true;
         // Down
-        if (event.deltaY < -20) {
+        if (event.deltaY < -30) {
             app.toggleItem('previous',app.currentItem);
         };
 
         // Up
-        if (event.deltaY > 20) {
+        if (event.deltaY > 30) {
             app.toggleItem('next',app.currentItem);
         };
     }
