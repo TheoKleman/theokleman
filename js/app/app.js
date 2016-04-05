@@ -90,7 +90,6 @@ App.prototype.slider = function(){
 
     // Init sequence between items
     this.timer();
-    this.timerTimeLine.pause();
 };
 
 App.prototype.bind = function() {
@@ -225,6 +224,7 @@ App.prototype.bindAboutCta = function() {
                     self.aboutElem.removeClass('active');
                     self.disableControls = false;
                     self.aboutCtaLabel.text('About');
+                    self.aboutCta.removeClass('active');
                 },
             });
         } else {
@@ -240,6 +240,7 @@ App.prototype.bindAboutCta = function() {
                 },
                 onComplete: function(){
                     self.aboutCtaLabel.text('Close');
+                    self.aboutCta.addClass('active');
                 }
             });
             tl.staggerFrom($('section#about h1'), .2, {

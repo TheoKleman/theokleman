@@ -17,6 +17,63 @@
         height: 22px;
         outline: 0;
 
+        &.active {
+            div.burger {
+                > span {
+                    transition: all ease-in-out .25s;
+                    width: 0;
+
+                    &:first-child {
+                        width: 28px;
+                        transform: rotate(45deg);
+                    }
+
+                    &:last-child {
+                        width: 28px;
+                        transform: rotate(-45deg);
+                    }
+                }
+            }
+
+            div.label {
+                transform: translate3d(-20px,0,0);
+                transition: all ease-in-out .25s;
+            }
+
+            &:hover {
+                div.burger {
+                    > span {
+                        width: 0;
+
+                        &:first-child {
+                            width: 28px;
+                        }
+
+                        &:last-child {
+                            width: 28px;
+                        }
+                    }
+                }
+            }
+        }
+
+        &:hover {
+            div.burger {
+                > span {
+                    transition: all ease-in-out .25s;
+                    width: 40px;
+
+                    &:first-child {
+                        width: 30px;
+                    }
+
+                    &:last-child {
+                        width: 25px;
+                    }
+                }
+            }
+        }
+
         div.burger {
             display: inline-block;
             vertical-align: top;
@@ -29,6 +86,8 @@
                 height: 2px;
                 background: $white;
                 margin-bottom: 8px;
+                transition: all ease-in-out .25s;
+                transform-origin: 0;
 
                 &:first-child {
                     width: 40px;
@@ -46,6 +105,7 @@
             vertical-align: top;
             margin-left: 30px;
             height: 22px;
+            transition: all ease-in-out .25s;
 
             span {
                 display: block;
