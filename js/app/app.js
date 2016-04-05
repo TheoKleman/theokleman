@@ -341,6 +341,9 @@ App.prototype.timer = function() {
             width: maxtimerWidth
         },
         ease: Power0.easeNone,
+        onStart: function(){
+            $(self.currentItem.background).addClass('active');
+        },
         onComplete: function(){
             // Check if animation is really completed & reset timer
             if (self.timerTimeLine.progress() === 1) {
@@ -348,15 +351,6 @@ App.prototype.timer = function() {
             }
         }
     });
-    self.timerTimeLine.to(this.currentItem.background, 15, {
-        rotation: "+=1.5",
-        x: "-=40",
-        y: "-=40",
-        ease: Power0.easeNone,
-        onStart: function(){
-            self.timerTimeLine.set(self.previousItem.background, {clearProps:"rotation,x,y"});
-        }
-    }, "-=15");
 };
 
 App.prototype.setCurrentItem = function(project) {
@@ -422,6 +416,10 @@ App.prototype.showItem = function(projectId) {
 
 App.prototype.toggleItem = function(direction, project){
     var self = this;
+
+    $(self.currentItem.background).delay(1000).removeClass('active',function(){
+        console.log("removed");
+    });
 
     switch(direction){
         case 'next':

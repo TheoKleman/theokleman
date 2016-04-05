@@ -47,11 +47,17 @@ section.project {
         position: absolute;
         z-index: 1;
         filter: grayscale(70%);
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center center;
+        background-size: cover !important;
+        background-repeat: no-repeat !important;
+        background-position: center center !important;
         background: rgba($blue,.8);
         transform: scale(1.15);
+        transition: all linear 15s;
+
+        &.active {
+            transform: scale(1.15) translate3d(-60px,-50px,0) rotate(2deg);
+            transition: all linear 15s;
+        }
     }
 }
 
