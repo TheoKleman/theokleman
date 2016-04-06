@@ -9,7 +9,7 @@
             "shortTitle": "Zerator",
             "client": "Streamer - Youtuber",
             "type": "Freelance project",
-            "role": "UI-UX Designer / Front-End Developer",
+            "role": "Full-Stack Developer / UI-UX Designer",
             "stack": "AngularJS / Wordpress / SASS",
             "more": ["audience","+600k monthly viewed pages"]
         },
@@ -22,7 +22,7 @@
             "shortTitle": "Serre-Che",
             "client": "Tourist Office / Ski station",
             "type": "Freelance project",
-            "role": "Front-End Developer",
+            "role": "Lead Front-End Developer",
             "stack": "Wordpress / SASS / SITRA2 API",
             "more": ["more","Provider for <a target='blank' href='http://mezcalito.fr' data-text='Mezcalito'>Mezcalito</a>"]
         },
@@ -48,7 +48,7 @@
             "shortTitle": "Domingo",
             "client": "Streamer - Youtuber",
             "type": "Freelance Project",
-            "role": "UI-UX Designer / Front-End Developer",
+            "role": "Full-Stack Developer / UI-UX Designer",
             "stack": "AngularJS / SASS",
             "more": ["audience","+600k monthly viewed pages"]
         }
