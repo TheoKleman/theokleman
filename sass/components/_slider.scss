@@ -21,10 +21,10 @@ section.project {
     height: 100%;
     overflow: hidden;
     opacity: 0;
-    z-index: -1;
+    visibility: hidden;
 
     &.active {
-        z-index: 1;
+        visibility: visible;
     }
 
     > div {

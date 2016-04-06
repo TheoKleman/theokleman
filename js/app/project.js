@@ -30,7 +30,7 @@ Project.prototype.show = function(){
         scale: 1,
         opacity: 1,
         ease: Power2.easeInOut,
-        delay: .25,
+        delay: .35,
         onStart: function(){
             self.domElem.addClass('active');
         },
