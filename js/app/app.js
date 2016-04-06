@@ -481,8 +481,10 @@ App.prototype.toggleItem = function(direction, project){
 };
 
 App.prototype.controlsSelectorAddCurrentClass = function(currentItem) {
-    $('.slider-controls > .selectors > ul > li.current').removeClass('current');
-    $(currentItem).addClass('current');
+    if (self.disableControls === false) {
+        $('.slider-controls > .selectors > ul > li.current').removeClass('current');
+        $(currentItem).addClass('current');
+    }
 };
 
 App.prototype.controlsBtnAnimateInOut = function(control, newBtn){
