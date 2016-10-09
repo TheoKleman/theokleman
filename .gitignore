@@ -1,3 +1,5 @@
+.DS_Store
+.localized
 /node_modules
 /js/vendors
 /js/dist
