@@ -2,6 +2,19 @@
     "projects": [
         {
             "key": 1,
+            "id": "domingo",
+            "link": "https://domingo.tv",
+            "thumbnail": "img/projects/domingo.jpg",
+            "title": "DominGo",
+            "shortTitle": "DominGo",
+            "client": "Streamer - Youtuber",
+            "type": "Freelance Project",
+            "role": "Project Manager / UI-UX Designer / Developer",
+            "stack": "React / Redux / KoaJS / Node",
+            "more": ["audience","+1.200M monthly viewed pages"]
+        },
+        {
+            "key": 2,
             "id": "zerator",
             "link": "http://zerator.com",
             "thumbnail": "img/projects/zerator.jpg",
@@ -14,7 +27,7 @@
             "more": ["audience","+600k monthly viewed pages"]
         },
         {
-            "key": 2,
+            "key": 3,
             "id": "serreChevalier",
             "link": "http://www.serre-chevalier.com/",
             "thumbnail": "img/projects/serre-chevalier.jpg",
@@ -27,7 +40,7 @@
             "more": ["more","Provider for <a target='blank' href='http://mezcalito.fr' data-text='Mezcalito'>Mezcalito</a>"]
         },
         {
-            "key": 3,
+            "key": 4,
             "id": "4lTrophy",
             "link": "http://4ltrophy.paul.yt/",
             "thumbnail": "img/projects/4l-trophy.jpg",
@@ -37,20 +50,7 @@
             "type": "School Project",
             "role": "Lead Front-End Developer / UI-UX Designer",
             "stack": "AngularJS / Canvas / SASS / API REST",
-            "more": ["github","Repositories <a target='_blank' href='https://github.com/PauuloG/4L-sticker-front' data-text='Front-End'>Front-End</a> / <a target='_blank' href='https://github.com/PauuloG/4L-sticker-back' data-text='Back-End'>Back-End</a>"]
-        },
-        {
-            "key": 4,
-            "id": "domingo",
-            "link": "http://domingo.tv",
-            "thumbnail": "img/projects/domingo.jpg",
-            "title": "Domingo",
-            "shortTitle": "Domingo",
-            "client": "Streamer - Youtuber",
-            "type": "Freelance Project",
-            "role": "Full-Stack Developer / UI-UX Designer",
-            "stack": "AngularJS / SASS",
-            "more": ["audience","+600k monthly viewed pages"]
+            "more": ["github","Repositories  <a target='_blank' href='https://github.com/PauuloG/4L-sticker-front' data-text='Front-End'>Front-End</a> / <a target='_blank' href='https://github.com/PauuloG/4L-sticker-back' data-text='Back-End'>Back-End</a>"]
         }
     ]
 }
